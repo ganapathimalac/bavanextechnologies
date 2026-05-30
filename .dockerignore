@@ -1,0 +1,25 @@
+# Dependencies
+node_modules
+npm-debug.log*
+
+# Build
+.next
+out
+
+# Dev / local
+.env*.local
+legacy
+
+# Git & IDE
+.git
+.gitignore
+.vscode
+.idea
+
+# Docs & scripts not needed in container
+*.md
+!README.md
+
+# OS
+.DS_Store
+Thumbs.db

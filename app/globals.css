@@ -1,0 +1,131 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+
+  body {
+    @apply overflow-x-hidden text-white antialiased;
+    min-height: 100dvh;
+    min-height: 100vh;
+    background-color: #131c31;
+    background-image:
+      radial-gradient(ellipse 90% 60% at 50% -10%, rgba(79, 142, 247, 0.1) 0%, transparent 55%),
+      radial-gradient(ellipse 50% 40% at 100% 0%, rgba(157, 123, 245, 0.07) 0%, transparent 50%),
+      linear-gradient(180deg, #131c31 0%, #161f35 50%, #1a2440 100%);
+    background-attachment: scroll;
+    padding-left: env(safe-area-inset-left, 0);
+    padding-right: env(safe-area-inset-right, 0);
+  }
+
+  /* Fixed backgrounds break on iOS Safari & many Android browsers */
+  @media (min-width: 768px) and (pointer: fine) {
+    body {
+      background-attachment: fixed;
+    }
+  }
+
+  ::selection {
+    background-color: rgb(79 142 247 / 0.3);
+    color: #ffffff;
+  }
+
+  /* Prevent iOS zoom on form focus (requires 16px+) */
+  @media (max-width: 767px) {
+    input,
+    select,
+    textarea {
+      font-size: 16px;
+    }
+  }
+
+  img,
+  video,
+  svg {
+    max-width: 100%;
+    height: auto;
+  }
+}
+
+@layer utilities {
+  .text-gradient {
+    @apply bg-gradient-to-r from-accent-blue via-accent-cyan to-accent-purple bg-clip-text text-transparent;
+  }
+
+  .glass {
+    border: 1px solid rgb(255 255 255 / 0.12);
+    background-color: rgb(255 255 255 / 0.07);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+  }
+
+  @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+    .glass {
+      background-color: rgb(26 36 64 / 0.92);
+    }
+  }
+
+  .surface-section {
+    background-color: rgb(34 46 74 / 0.35);
+  }
+
+  .section-padding {
+    @apply px-4 py-16 sm:px-6 sm:py-20 lg:px-8 lg:py-28;
+  }
+
+  .container-max {
+    @apply mx-auto w-full max-w-7xl;
+  }
+
+  .safe-top {
+    padding-top: env(safe-area-inset-top, 0);
+  }
+
+  .safe-bottom {
+    padding-bottom: env(safe-area-inset-bottom, 0);
+  }
+
+  .touch-target {
+    min-height: 44px;
+    min-width: 44px;
+  }
+}
+
+/* Scrollbar — WebKit (Chrome, Safari, Edge) */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #1a2440;
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #4f8ef7, #22d3ee);
+  border-radius: 4px;
+}
+
+/* Firefox scrollbar */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #4f8ef7 #1a2440;
+}

@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52" fill="none">
+  <defs>
+    <linearGradient id="stroke" x1="8" y1="44" x2="44" y2="8">
+      <stop stop-color="#4F8EF7"/>
+      <stop offset="0.45" stop-color="#22D3EE"/>
+      <stop offset="1" stop-color="#9D7BF5"/>
+    </linearGradient>
+    <linearGradient id="fill" x1="10" y1="10" x2="42" y2="42">
+      <stop stop-color="#1E2942"/>
+      <stop offset="1" stop-color="#141C31"/>
+    </linearGradient>
+    <linearGradient id="shine" x1="26" y1="8" x2="26" y2="44">
+      <stop stop-color="#FFFFFF" stop-opacity="0.12"/>
+      <stop offset="1" stop-color="#FFFFFF" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+  <path d="M26 3.5L44.5 14.25v21.5L26 46.5 7.5 35.75v-21.5L26 3.5z" fill="url(#fill)" stroke="url(#stroke)" stroke-width="1.35"/>
+  <path d="M26 3.5L44.5 14.25v21.5L26 46.5 7.5 35.75v-21.5L26 3.5z" fill="url(#shine)"/>
+  <ellipse cx="26" cy="26" rx="14" ry="5.5" stroke="url(#stroke)" stroke-width="1.15" stroke-opacity="0.55" fill="none"/>
+  <path d="M26 11.5v29" stroke="url(#stroke)" stroke-width="1.15" stroke-opacity="0.45" stroke-linecap="round"/>
+  <circle cx="26" cy="26" r="3.2" fill="#22D3EE"/>
+  <circle cx="12.5" cy="26" r="2" fill="#4F8EF7" fill-opacity="0.9"/>
+  <circle cx="39.5" cy="26" r="2" fill="#9D7BF5" fill-opacity="0.9"/>
+  <circle cx="26" cy="14" r="1.6" fill="#4F8EF7" fill-opacity="0.75"/>
+  <circle cx="26" cy="38" r="1.6" fill="#9D7BF5" fill-opacity="0.75"/>
+  <path d="M12.5 26h8.3M31.2 26h8.3M26 14v8.8M26 29.2v8.8" stroke="#22D3EE" stroke-width="1" stroke-opacity="0.35" stroke-linecap="round"/>
+</svg>
