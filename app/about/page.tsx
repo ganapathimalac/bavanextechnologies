@@ -11,7 +11,7 @@ import { aboutContent, siteConfig } from "@/lib/data";
 
 export const metadata: Metadata = {
   title: "About Us",
-  description: `Learn about ${siteConfig.name} — our mission, values, and leadership team driving enterprise AI innovation.`,
+  description: `Learn about ${siteConfig.name} — our mission, values, and enterprise AI innovation.`,
 };
 
 export default function AboutPage() {
@@ -86,35 +86,6 @@ export default function AboutPage() {
       </section>
 
       <StatsSection />
-
-      <section id="leadership" className="section-padding">
-        <div className="container-max">
-          <FadeIn className="mx-auto max-w-2xl text-center">
-            <span className="text-sm font-semibold uppercase tracking-widest text-accent-cyan">
-              Leadership
-            </span>
-            <h2 className="mt-3 font-display text-3xl font-bold sm:text-4xl">
-              Meet Our Team
-            </h2>
-          </FadeIn>
-          <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            {aboutContent.leadership.map((leader, i) => (
-              <FadeIn key={leader.name} delay={i * 0.05}>
-                <Card className="h-full">
-                  <CardContent className="p-6">
-                    <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-br from-accent-blue to-accent-purple text-lg font-bold">
-                      {leader.name.split(" ").map((n) => n[0]).join("")}
-                    </div>
-                    <h3 className="font-semibold text-white">{leader.name}</h3>
-                    <p className="text-sm text-accent-cyan">{leader.role}</p>
-                    <p className="mt-3 text-sm text-muted">{leader.bio}</p>
-                  </CardContent>
-                </Card>
-              </FadeIn>
-            ))}
-          </div>
-        </div>
-      </section>
 
       <section id="partners" className="section-padding surface-section">
         <div className="container-max text-center">

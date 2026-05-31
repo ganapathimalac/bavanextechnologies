@@ -7,7 +7,9 @@ on:
 
 env:
   AZURE_WEBAPP_NAME: bavanex-technologies
-  NODE_VERSION: "20.x"
+  NODE_VERSION: "22.x"
+  # GitHub Actions runner: checkout/setup-node use Node 24 (Node 20 deprecated on runners)
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
 jobs:
   build-and-deploy:
@@ -33,7 +35,8 @@ jobs:
           cp -r .next/standalone deploy
           cp -r .next/static deploy/.next/static
           cp -r public deploy/public
-          cd deploy && npm install --omit=dev 2>/dev/null || true
+          printf '%s\n' '#!/bin/bash' 'export HOSTNAME=0.0.0.0' 'export PORT="${PORT:-8080}"' 'exec node server.js' > deploy/startup.sh
+          chmod +x deploy/startup.sh
 
       - name: Deploy to Azure Web App
         uses: azure/webapps-deploy@v3
@@ -41,3 +44,4 @@ jobs:
           app-name: ${{ env.AZURE_WEBAPP_NAME }}
           publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
           package: deploy
+          startup-command: "bash startup.sh"

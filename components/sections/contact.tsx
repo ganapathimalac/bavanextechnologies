@@ -23,6 +23,10 @@ const initialForm: FormState = {
   message: "",
 };
 
+const chennaiOffice =
+  siteConfig.offices.find((office) => office.city === "Chennai") ??
+  siteConfig.offices[siteConfig.offices.length - 1];
+
 export function ContactSection() {
   const [form, setForm] = useState<FormState>(initialForm);
   const [submitted, setSubmitted] = useState(false);
@@ -234,7 +238,7 @@ export function ContactSection() {
               <div className="overflow-hidden rounded-2xl border border-white/10">
                 <iframe
                   title="Bavanex Technologies Office Location"
-                  src="https://maps.google.com/maps?q=San+Francisco+CA&t=&z=13&ie=UTF8&iwloc=&output=embed"
+                  src={`https://maps.google.com/maps?q=${encodeURIComponent(chennaiOffice.address)}&t=&z=14&ie=UTF8&iwloc=&output=embed`}
                   className="h-64 w-full grayscale invert opacity-80"
                   loading="lazy"
                   referrerPolicy="no-referrer-when-downgrade"

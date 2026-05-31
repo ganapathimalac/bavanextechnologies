@@ -4,11 +4,20 @@ export const siteConfig = {
   description:
     "Build, automate, and scale enterprise solutions using cutting-edge AI, Machine Learning, Data Engineering, and Intelligent Automation.",
   email: "hello@bavanex.com",
-  phone: "+1 (555) 234-8900",
+  phone: "+32 465 119690",
   offices: [
-    { city: "San Francisco", address: "100 Market Street, Suite 400" },
-    { city: "New York", address: "350 Fifth Avenue, Floor 12" },
-    { city: "Bangalore", address: "Embassy Tech Village, Block C" },
+    {
+      city: "Belgium",
+      address: "Bd du Midi 41, 1000 Bruxelles, Belgium",
+    },
+    {
+      city: "Netherlands",
+      address: "Westzanerdijk 328, 1507 AR Zaandam, Netherlands",
+    },
+    {
+      city: "Chennai",
+      address: "9Q8, SIPCOT-Thalambur Rd, Natham, Siruseri, Chennai, Tamil Nadu 600130",
+    },
   ],
 };
 
@@ -391,33 +400,33 @@ export const caseStudies = [
 
 export const testimonials = [
   {
-    quote: "Bavanex transformed our data infrastructure and delivered AI solutions that exceeded every KPI we set.",
-    name: "Sarah Chen",
-    role: "CTO",
-    company: "Global Finance Corp",
-    avatar: "/images/avatar-1.jpg",
+    quote:
+      "At Bavanex Technologies, we are committed to delivering AI-powered solutions that transform enterprises and drive measurable business outcomes worldwide.",
+    name: "Gokulakannan",
+    role: "Chief Executive Officer (CEO)",
+    company: "Bavanex Technologies",
   },
   {
-    quote: "Their agentic AI platform reduced our operational costs by 40% within the first quarter of deployment.",
-    name: "Michael Rodriguez",
-    role: "VP of Operations",
-    company: "HealthTech Solutions",
-    avatar: "/images/avatar-2.jpg",
+    quote:
+      "We build scalable, secure technology platforms that turn complex AI and data challenges into reliable enterprise systems our clients can trust.",
+    name: "Sandeep Shenoy",
+    role: "Chief Technology Officer (CTO)",
+    company: "Bavanex Technologies",
   },
   {
-    quote: "The no-code AI builder empowered our teams to innovate without waiting on engineering resources.",
-    name: "Priya Sharma",
-    role: "Head of Digital",
-    company: "RetailMax International",
-    avatar: "/images/avatar-3.jpg",
+    quote:
+      "We design AI-powered products that align with real business needs, helping teams move from idea to impact with clarity, speed, and measurable value.",
+    name: "Nikita Reddy",
+    role: "Product Manager & Delivery Head",
+    company: "Bavanex Technologies",
   },
 ];
 
 export const careers = {
   positions: [
-    { title: "Senior ML Engineer", location: "San Francisco / Remote", type: "Full-time" },
-    { title: "Data Platform Architect", location: "New York / Remote", type: "Full-time" },
-    { title: "AI Product Manager", location: "Bangalore / Hybrid", type: "Full-time" },
+    { title: "Senior ML Engineer", location: "Chennai / Hybrid", type: "Full-time" },
+    { title: "Data Platform Architect", location: "Chennai / Hybrid", type: "Full-time" },
+    { title: "AI Product Manager", location: "Chennai / Hybrid", type: "Full-time" },
     { title: "DevOps Engineer", location: "Remote", type: "Full-time" },
   ],
   culture: [
@@ -525,7 +534,6 @@ export const solutionsContent = {
 export const footerLinks = {
   company: [
     { label: "About Us", href: "/about" },
-    { label: "Leadership", href: "/about#leadership" },
     { label: "Partners", href: "/about#partners" },
     { label: "News", href: "/#blog" },
   ],

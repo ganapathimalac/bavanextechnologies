@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronLeft, ChevronRight, Quote } from "lucide-react";
 import { FadeIn } from "@/components/motion/fade-in";
@@ -44,22 +43,9 @@ export function TestimonialsSection() {
                   <p className="text-lg leading-relaxed text-muted sm:text-xl">
                     &ldquo;{testimonials[current].quote}&rdquo;
                   </p>
-                  <div className="mt-8 flex flex-col items-center gap-3">
-                    <div className="relative h-14 w-14 overflow-hidden rounded-full border-2 border-accent-blue/50">
-                      <Image
-                        src={testimonials[current].avatar}
-                        alt={testimonials[current].name}
-                        fill
-                        className="object-cover"
-                        sizes="56px"
-                      />
-                    </div>
-                    <div>
-                      <p className="font-semibold text-white">{testimonials[current].name}</p>
-                      <p className="text-sm text-muted">
-                        {testimonials[current].role}, {testimonials[current].company}
-                      </p>
-                    </div>
+                  <div className="mt-8 flex flex-col items-center gap-1">
+                    <p className="font-semibold text-white">{testimonials[current].name}</p>
+                    <p className="text-sm text-muted">{testimonials[current].role}</p>
                   </div>
                 </motion.div>
               </AnimatePresence>
@@ -73,9 +59,9 @@ export function TestimonialsSection() {
                   <ChevronLeft size={20} />
                 </button>
                 <div className="flex gap-2">
-                  {testimonials.map((_, i) => (
+                  {testimonials.map((item, i) => (
                     <button
-                      key={i}
+                      key={item.name}
                       onClick={() => setCurrent(i)}
                       aria-label={`Go to testimonial ${i + 1}`}
                       className={`h-2 rounded-full transition-all ${
