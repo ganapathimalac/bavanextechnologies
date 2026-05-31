@@ -1,0 +1,379 @@
+import type { ChatLanguage } from "./types";
+
+export const supportedLanguages: { code: ChatLanguage; label: string; flag: string }[] = [
+  { code: "en", label: "English", flag: "🇬🇧" },
+  { code: "fr", label: "Français", flag: "🇫🇷" },
+  { code: "nl", label: "Nederlands", flag: "🇳🇱" },
+  { code: "de", label: "Deutsch", flag: "🇩🇪" },
+  { code: "ta", label: "தமிழ்", flag: "🇮🇳" },
+  { code: "hi", label: "हिन्दी", flag: "🇮🇳" },
+];
+
+type UiStrings = {
+  welcome: string;
+  placeholder: string;
+  send: string;
+  attach: string;
+  typing: string;
+  online: string;
+  title: string;
+  subtitle: string;
+  newMessage: string;
+  clearHistory: string;
+  language: string;
+  minimize: string;
+  close: string;
+  fileTooLarge: string;
+  fileTypeInvalid: string;
+  uploadFailed: string;
+  networkError: string;
+  leadTitle: string;
+  leadSubmit: string;
+  appointmentTitle: string;
+  appointmentSubmit: string;
+  escalationTitle: string;
+  escalationSubmit: string;
+  firstName: string;
+  lastName: string;
+  email: string;
+  company: string;
+  message: string;
+  name: string;
+  phone: string;
+  date: string;
+  time: string;
+  topic: string;
+  notes: string;
+  priority: string;
+  priorityNormal: string;
+  priorityUrgent: string;
+  summary: string;
+  submitSuccess: string;
+  viewContact: string;
+  poweredBy: string;
+};
+
+const ui: Record<ChatLanguage, UiStrings> = {
+  en: {
+    welcome:
+      "Hello! 👋 I'm your virtual assistant, available 24/7 to help with your questions, services, and support needs.",
+    placeholder: "Type your message…",
+    send: "Send",
+    attach: "Attach file",
+    typing: "Assistant is typing…",
+    online: "Online · 24/7 support",
+    title: "Bavanex Assistant",
+    subtitle: "AI-powered support",
+    newMessage: "New message",
+    clearHistory: "Clear history",
+    language: "Language",
+    minimize: "Minimize",
+    close: "Close",
+    fileTooLarge: "File must be under 5 MB.",
+    fileTypeInvalid: "Only images and PDF files are allowed.",
+    uploadFailed: "Upload failed. Please try again.",
+    networkError: "Connection error. Please try again.",
+    leadTitle: "Share your details",
+    leadSubmit: "Submit inquiry",
+    appointmentTitle: "Schedule a consultation",
+    appointmentSubmit: "Book appointment",
+    escalationTitle: "Connect with a human agent",
+    escalationSubmit: "Request callback",
+    firstName: "First name",
+    lastName: "Last name",
+    email: "Email",
+    company: "Company",
+    message: "Message",
+    name: "Full name",
+    phone: "Phone",
+    date: "Preferred date",
+    time: "Preferred time",
+    topic: "Topic",
+    notes: "Additional notes",
+    priority: "Priority",
+    priorityNormal: "Normal",
+    priorityUrgent: "Urgent",
+    summary: "How can we help?",
+    submitSuccess: "Thank you! Our team will follow up shortly.",
+    viewContact: "Contact page",
+    poweredBy: "Secured by Bavanex · Enterprise AI",
+  },
+  fr: {
+    welcome:
+      "Bonjour ! 👋 Je suis votre assistant virtuel, disponible 24h/24 et 7j/7 pour vos questions, services et besoins de support.",
+    placeholder: "Écrivez votre message…",
+    send: "Envoyer",
+    attach: "Joindre un fichier",
+    typing: "L'assistant écrit…",
+    online: "En ligne · Support 24/7",
+    title: "Assistant Bavanex",
+    subtitle: "Support alimenté par l'IA",
+    newMessage: "Nouveau message",
+    clearHistory: "Effacer l'historique",
+    language: "Langue",
+    minimize: "Réduire",
+    close: "Fermer",
+    fileTooLarge: "Le fichier doit faire moins de 5 Mo.",
+    fileTypeInvalid: "Seules les images et les PDF sont autorisés.",
+    uploadFailed: "Échec du téléversement. Réessayez.",
+    networkError: "Erreur de connexion. Réessayez.",
+    leadTitle: "Vos coordonnées",
+    leadSubmit: "Envoyer la demande",
+    appointmentTitle: "Planifier une consultation",
+    appointmentSubmit: "Réserver",
+    escalationTitle: "Parler à un conseiller",
+    escalationSubmit: "Demander un rappel",
+    firstName: "Prénom",
+    lastName: "Nom",
+    email: "E-mail",
+    company: "Entreprise",
+    message: "Message",
+    name: "Nom complet",
+    phone: "Téléphone",
+    date: "Date souhaitée",
+    time: "Heure souhaitée",
+    topic: "Sujet",
+    notes: "Notes",
+    priority: "Priorité",
+    priorityNormal: "Normal",
+    priorityUrgent: "Urgent",
+    summary: "Comment pouvons-nous vous aider ?",
+    submitSuccess: "Merci ! Notre équipe vous recontactera rapidement.",
+    viewContact: "Page contact",
+    poweredBy: "Sécurisé par Bavanex · IA Enterprise",
+  },
+  nl: {
+    welcome:
+      "Hallo! 👋 Ik ben uw virtuele assistent, 24/7 beschikbaar voor vragen, diensten en ondersteuning.",
+    placeholder: "Typ uw bericht…",
+    send: "Versturen",
+    attach: "Bestand toevoegen",
+    typing: "Assistent typt…",
+    online: "Online · 24/7 support",
+    title: "Bavanex Assistent",
+    subtitle: "AI-ondersteuning",
+    newMessage: "Nieuw bericht",
+    clearHistory: "Geschiedenis wissen",
+    language: "Taal",
+    minimize: "Minimaliseren",
+    close: "Sluiten",
+    fileTooLarge: "Bestand moet kleiner zijn dan 5 MB.",
+    fileTypeInvalid: "Alleen afbeeldingen en PDF zijn toegestaan.",
+    uploadFailed: "Upload mislukt. Probeer opnieuw.",
+    networkError: "Verbindingsfout. Probeer opnieuw.",
+    leadTitle: "Uw gegevens",
+    leadSubmit: "Aanvraag versturen",
+    appointmentTitle: "Consult plannen",
+    appointmentSubmit: "Afspraak boeken",
+    escalationTitle: "Spreek met een medewerker",
+    escalationSubmit: "Terugbelverzoek",
+    firstName: "Voornaam",
+    lastName: "Achternaam",
+    email: "E-mail",
+    company: "Bedrijf",
+    message: "Bericht",
+    name: "Volledige naam",
+    phone: "Telefoon",
+    date: "Gewenste datum",
+    time: "Gewenste tijd",
+    topic: "Onderwerp",
+    notes: "Notities",
+    priority: "Prioriteit",
+    priorityNormal: "Normaal",
+    priorityUrgent: "Urgent",
+    summary: "Hoe kunnen we helpen?",
+    submitSuccess: "Bedankt! Ons team neemt snel contact op.",
+    viewContact: "Contactpagina",
+    poweredBy: "Beveiligd door Bavanex · Enterprise AI",
+  },
+  de: {
+    welcome:
+      "Hallo! 👋 Ich bin Ihr virtueller Assistent, rund um die Uhr für Fragen, Services und Support verfügbar.",
+    placeholder: "Nachricht eingeben…",
+    send: "Senden",
+    attach: "Datei anhängen",
+    typing: "Assistent schreibt…",
+    online: "Online · 24/7 Support",
+    title: "Bavanex Assistent",
+    subtitle: "KI-gestützter Support",
+    newMessage: "Neue Nachricht",
+    clearHistory: "Verlauf löschen",
+    language: "Sprache",
+    minimize: "Minimieren",
+    close: "Schließen",
+    fileTooLarge: "Datei muss unter 5 MB sein.",
+    fileTypeInvalid: "Nur Bilder und PDF erlaubt.",
+    uploadFailed: "Upload fehlgeschlagen. Bitte erneut versuchen.",
+    networkError: "Verbindungsfehler. Bitte erneut versuchen.",
+    leadTitle: "Ihre Kontaktdaten",
+    leadSubmit: "Anfrage senden",
+    appointmentTitle: "Beratung planen",
+    appointmentSubmit: "Termin buchen",
+    escalationTitle: "Mit Mitarbeiter sprechen",
+    escalationSubmit: "Rückruf anfordern",
+    firstName: "Vorname",
+    lastName: "Nachname",
+    email: "E-Mail",
+    company: "Unternehmen",
+    message: "Nachricht",
+    name: "Vollständiger Name",
+    phone: "Telefon",
+    date: "Wunschdatum",
+    time: "Wunschzeit",
+    topic: "Thema",
+    notes: "Notizen",
+    priority: "Priorität",
+    priorityNormal: "Normal",
+    priorityUrgent: "Dringend",
+    summary: "Wie können wir helfen?",
+    submitSuccess: "Danke! Unser Team meldet sich in Kürze.",
+    viewContact: "Kontaktseite",
+    poweredBy: "Gesichert durch Bavanex · Enterprise AI",
+  },
+  ta: {
+    welcome:
+      "வணக்கம்! 👋 உங்கள் கேள்விகள், சேவைகள் மற்றும் support தேவைகளுக்கு 24/7 உதவ நான் இங்கே இருக்கிறேன்.",
+    placeholder: "உங்கள் செய்தியை தட்டச்சு செய்யுங்கள்…",
+    send: "அனுப்பு",
+    attach: "கோப்பு இணை",
+    typing: "Assistant typing…",
+    online: "Online · 24/7 support",
+    title: "Bavanex Assistant",
+    subtitle: "AI-powered support",
+    newMessage: "புதிய செய்தி",
+    clearHistory: "வரலாறு அழி",
+    language: "மொழி",
+    minimize: "சுருக்கு",
+    close: "மூடு",
+    fileTooLarge: "கோப்பு 5 MB-க்குள் இருக்க வேண்டும்.",
+    fileTypeInvalid: "Images மற்றும் PDF மட்டும்.",
+    uploadFailed: "Upload தோல்வி. மீண்டும் முயற்சிக்கவும்.",
+    networkError: "Connection error. மீண்டும் முயற்சிக்கவும்.",
+    leadTitle: "உங்கள் விவரங்கள்",
+    leadSubmit: "Submit",
+    appointmentTitle: "Appointment schedule",
+    appointmentSubmit: "Book",
+    escalationTitle: "Human agent",
+    escalationSubmit: "Callback request",
+    firstName: "First name",
+    lastName: "Last name",
+    email: "Email",
+    company: "Company",
+    message: "Message",
+    name: "Full name",
+    phone: "Phone",
+    date: "Date",
+    time: "Time",
+    topic: "Topic",
+    notes: "Notes",
+    priority: "Priority",
+    priorityNormal: "Normal",
+    priorityUrgent: "Urgent",
+    summary: "How can we help?",
+    submitSuccess: "Thank you! Our team will follow up shortly.",
+    viewContact: "Contact page",
+    poweredBy: "Secured by Bavanex · Enterprise AI",
+  },
+  hi: {
+    welcome:
+      "नमस्ते! 👋 मैं आपका virtual assistant हूँ, 24/7 आपके सवालों, services और support के लिए उपलब्ध।",
+    placeholder: "अपना संदेश लिखें…",
+    send: "भेजें",
+    attach: "फ़ाइल जोड़ें",
+    typing: "Assistant typing…",
+    online: "Online · 24/7 support",
+    title: "Bavanex Assistant",
+    subtitle: "AI-powered support",
+    newMessage: "नया संदेश",
+    clearHistory: "इतिहास साफ़ करें",
+    language: "भाषा",
+    minimize: "छोटा करें",
+    close: "बंद करें",
+    fileTooLarge: "फ़ाइल 5 MB से कम होनी चाहिए।",
+    fileTypeInvalid: "केवल images और PDF allowed हैं।",
+    uploadFailed: "Upload failed. पुनः प्रयास करें।",
+    networkError: "Connection error. पुनः प्रयास करें।",
+    leadTitle: "अपना विवरण साझा करें",
+    leadSubmit: "Submit",
+    appointmentTitle: "Consultation schedule",
+    appointmentSubmit: "Book",
+    escalationTitle: "Human agent",
+    escalationSubmit: "Callback request",
+    firstName: "First name",
+    lastName: "Last name",
+    email: "Email",
+    company: "Company",
+    message: "Message",
+    name: "Full name",
+    phone: "Phone",
+    date: "Date",
+    time: "Time",
+    topic: "Topic",
+    notes: "Notes",
+    priority: "Priority",
+    priorityNormal: "Normal",
+    priorityUrgent: "Urgent",
+    summary: "How can we help?",
+    submitSuccess: "Thank you! Our team will follow up shortly.",
+    viewContact: "Contact page",
+    poweredBy: "Secured by Bavanex · Enterprise AI",
+  },
+};
+
+export function getUiStrings(lang: ChatLanguage): UiStrings {
+  return ui[lang] ?? ui.en;
+}
+
+export function getDefaultQuickReplies(lang: ChatLanguage) {
+  const map: Record<ChatLanguage, { id: string; label: string; payload: string }[]> = {
+    en: [
+      { id: "services", label: "Our Services", payload: "Tell me about your services" },
+      { id: "demo", label: "Request a Demo", payload: "I would like to request a demo" },
+      { id: "contact", label: "Contact Info", payload: "What are your contact details?" },
+      { id: "faq", label: "FAQs", payload: "Show me frequently asked questions" },
+      { id: "appointment", label: "Book Appointment", payload: "I want to schedule an appointment" },
+      { id: "human", label: "Talk to Human", payload: "I need to speak with a human agent" },
+    ],
+    fr: [
+      { id: "services", label: "Nos services", payload: "Parlez-moi de vos services" },
+      { id: "demo", label: "Demander une démo", payload: "Je souhaite demander une démo" },
+      { id: "contact", label: "Contact", payload: "Quelles sont vos coordonnées ?" },
+      { id: "faq", label: "FAQ", payload: "Questions fréquentes" },
+      { id: "appointment", label: "Rendez-vous", payload: "Je veux planifier un rendez-vous" },
+      { id: "human", label: "Conseiller", payload: "Je veux parler à un conseiller" },
+    ],
+    nl: [
+      { id: "services", label: "Onze diensten", payload: "Vertel me over jullie diensten" },
+      { id: "demo", label: "Demo aanvragen", payload: "Ik wil een demo aanvragen" },
+      { id: "contact", label: "Contact", payload: "Wat zijn jullie contactgegevens?" },
+      { id: "faq", label: "FAQ", payload: "Veelgestelde vragen" },
+      { id: "appointment", label: "Afspraak", payload: "Ik wil een afspraak plannen" },
+      { id: "human", label: "Medewerker", payload: "Ik wil met een medewerker spreken" },
+    ],
+    de: [
+      { id: "services", label: "Unsere Services", payload: "Erzählen Sie mir über Ihre Services" },
+      { id: "demo", label: "Demo anfragen", payload: "Ich möchte eine Demo anfragen" },
+      { id: "contact", label: "Kontakt", payload: "Wie sind Ihre Kontaktdaten?" },
+      { id: "faq", label: "FAQ", payload: "Häufig gestellte Fragen" },
+      { id: "appointment", label: "Termin", payload: "Ich möchte einen Termin vereinbaren" },
+      { id: "human", label: "Mitarbeiter", payload: "Ich möchte mit einem Mitarbeiter sprechen" },
+    ],
+    ta: [
+      { id: "services", label: "Services", payload: "Tell me about your services" },
+      { id: "demo", label: "Demo", payload: "I would like to request a demo" },
+      { id: "contact", label: "Contact", payload: "What are your contact details?" },
+      { id: "faq", label: "FAQ", payload: "Show me frequently asked questions" },
+      { id: "appointment", label: "Appointment", payload: "I want to schedule an appointment" },
+      { id: "human", label: "Human agent", payload: "I need to speak with a human agent" },
+    ],
+    hi: [
+      { id: "services", label: "Services", payload: "Tell me about your services" },
+      { id: "demo", label: "Demo", payload: "I would like to request a demo" },
+      { id: "contact", label: "Contact", payload: "What are your contact details?" },
+      { id: "faq", label: "FAQ", payload: "Show me frequently asked questions" },
+      { id: "appointment", label: "Appointment", payload: "I want to schedule an appointment" },
+      { id: "human", label: "Human agent", payload: "I need to speak with a human agent" },
+    ],
+  };
+  return map[lang] ?? map.en;
+}

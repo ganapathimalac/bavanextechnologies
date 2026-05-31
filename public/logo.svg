@@ -1,27 +1,16 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 52" fill="none">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 260 100" fill="none">
   <defs>
-    <linearGradient id="stroke" x1="8" y1="44" x2="44" y2="8">
-      <stop stop-color="#4F8EF7"/>
-      <stop offset="0.45" stop-color="#22D3EE"/>
-      <stop offset="1" stop-color="#9D7BF5"/>
-    </linearGradient>
-    <linearGradient id="fill" x1="10" y1="10" x2="42" y2="42">
-      <stop stop-color="#1E2942"/>
-      <stop offset="1" stop-color="#141C31"/>
-    </linearGradient>
-    <linearGradient id="ex" x1="0" y1="0" x2="1" y2="0">
+    <linearGradient id="nex" x1="0" y1="0" x2="1" y2="0">
       <stop stop-color="#22D3EE"/>
+      <stop offset="0.5" stop-color="#7DD3FC"/>
       <stop offset="1" stop-color="#4F8EF7"/>
     </linearGradient>
+    <pattern id="mark" patternContentUnits="objectBoundingBox" width="1" height="1">
+      <image href="/images/logo-mark.png" width="100" height="100" preserveAspectRatio="xMidYMid slice"/>
+    </pattern>
   </defs>
-  <!-- Mark -->
-  <path d="M26 3.5L44.5 14.25v21.5L26 46.5 7.5 35.75v-21.5L26 3.5z" fill="url(#fill)" stroke="url(#stroke)" stroke-width="1.35"/>
-  <ellipse cx="26" cy="26" rx="14" ry="5.5" stroke="url(#stroke)" stroke-width="1.15" stroke-opacity="0.55" fill="none"/>
-  <circle cx="26" cy="26" r="3.2" fill="#22D3EE"/>
-  <circle cx="12.5" cy="26" r="2" fill="#4F8EF7"/>
-  <circle cx="39.5" cy="26" r="2" fill="#9D7BF5"/>
-  <!-- Wordmark -->
-  <text x="58" y="24" fill="#FFFFFF" font-family="system-ui, sans-serif" font-size="15" font-weight="600" letter-spacing="2.7">BAVA<tspan fill="url(#ex)">NEX</tspan></text>
-  <line x1="58" y1="30" x2="146" y2="30" stroke="url(#stroke)" stroke-width="0.75" stroke-opacity="0.5"/>
-  <text x="58" y="42" fill="#FFFFFF" fill-opacity="0.45" font-family="system-ui, sans-serif" font-size="9" font-weight="500" letter-spacing="2.3">TECHNOLOGIES</text>
+  <rect x="0" y="0" width="100" height="100" rx="22" fill="url(#mark)"/>
+  <text x="114" y="44" fill="#FFFFFF" font-family="system-ui,sans-serif" font-size="22" font-weight="700" letter-spacing="3.5">BAVA<tspan fill="url(#nex)">NEX</tspan></text>
+  <line x1="114" y1="54" x2="252" y2="54" stroke="#22D3EE" stroke-width="0.8" stroke-opacity="0.5"/>
+  <text x="114" y="74" fill="#FFFFFF" fill-opacity="0.5" font-family="system-ui,sans-serif" font-size="11" font-weight="600" letter-spacing="3">TECHNOLOGIES</text>
 </svg>

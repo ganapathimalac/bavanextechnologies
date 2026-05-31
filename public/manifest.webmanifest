@@ -1,7 +1,7 @@
 {
   "name": "Bavanex Technologies",
   "short_name": "Bavanex",
-  "description": "AI-Powered Enterprise Intelligence",
+  "description": "Technology-Driven Software Innovation",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#131c31",
@@ -9,9 +9,15 @@
   "orientation": "portrait-primary",
   "icons": [
     {
-      "src": "/favicon.svg",
-      "sizes": "any",
-      "type": "image/svg+xml",
+      "src": "/images/logo-mark.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/apple-touch-icon.png",
+      "sizes": "512x512",
+      "type": "image/png",
       "purpose": "any"
     }
   ]

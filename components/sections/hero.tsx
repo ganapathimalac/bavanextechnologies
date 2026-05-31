@@ -6,6 +6,7 @@ import { ArrowRight, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ParticleNetwork } from "@/components/effects/particle-network";
 import { FadeIn } from "@/components/motion/fade-in";
+import { siteConfig } from "@/lib/data";
 
 export function HeroSection() {
   return (
@@ -26,22 +27,21 @@ export function HeroSection() {
               transition={{ duration: 0.5 }}
               className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-1.5 text-sm text-muted backdrop-blur-sm"
             >
-              <span className="h-2 w-2 rounded-full bg-accent-cyan animate-pulse" />
-              Enterprise AI Platform
+              <span className="h-2 w-2 rounded-full bg-teal-400 animate-pulse" />
+              {siteConfig.tagline}
             </motion.div>
           </FadeIn>
 
           <FadeIn delay={0.1}>
             <h1 className="font-display text-3xl font-bold leading-tight tracking-tight sm:text-5xl lg:text-7xl">
               Transforming Businesses with{" "}
-              <span className="text-gradient">AI-Powered Intelligence</span>
+              <span className="text-gradient">Technology &amp; Innovation</span>
             </h1>
           </FadeIn>
 
           <FadeIn delay={0.2}>
             <p className="mx-auto mt-6 max-w-2xl text-lg text-muted sm:text-xl">
-              Build, automate, and scale enterprise solutions using cutting-edge AI,
-              Machine Learning, Data Engineering, and Intelligent Automation.
+              {siteConfig.description}
             </p>
           </FadeIn>
 

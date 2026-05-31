@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Inter, Plus_Jakarta_Sans } from "next/font/google";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
+import { ChatWidget } from "@/components/chat/chat-widget";
 import { Spotlight } from "@/components/effects/spotlight";
 import { siteConfig } from "@/lib/data";
 import "./globals.css";
@@ -44,10 +45,10 @@ export const metadata: Metadata = {
     description: siteConfig.description,
     type: "website",
     locale: "en_US",
-    images: [{ url: "/logo.svg", width: 240, height: 52, alt: siteConfig.name }],
+    images: [{ url: "/images/logo-mark.png", width: 512, height: 512, alt: siteConfig.name }],
   },
   robots: { index: true, follow: true },
-  icons: { icon: "/favicon.svg", apple: "/logo.svg" },
+  icons: { icon: "/images/logo-mark.png", apple: "/apple-touch-icon.png" },
   manifest: "/manifest.webmanifest",
   appleWebApp: {
     capable: true,
@@ -78,6 +79,7 @@ export default function RootLayout({
         <Header />
         <main id="main-content">{children}</main>
         <Footer />
+        <ChatWidget />
       </body>
     </html>
   );

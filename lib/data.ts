@@ -1,8 +1,8 @@
 export const siteConfig = {
   name: "Bavanex Technologies",
-  tagline: "AI-Powered Enterprise Intelligence",
+  tagline: "Technology-Driven Software Innovation",
   description:
-    "Build, automate, and scale enterprise solutions using cutting-edge AI, Machine Learning, Data Engineering, and Intelligent Automation.",
+    "Bavanex Technologies is a technology-driven software company specializing in custom software development, cloud solutions, AI-powered applications, and digital transformation services. We help businesses leverage technology to improve efficiency, accelerate growth, and achieve sustainable success.",
   email: "hello@bavanex.com",
   phone: "+32 465 119690",
   offices: [
@@ -13,6 +13,10 @@ export const siteConfig = {
     {
       city: "Netherlands",
       address: "Westzanerdijk 328, 1507 AR Zaandam, Netherlands",
+    },
+    {
+      city: "Serbia",
+      address: "Konstantina Filozofa 8, Beograd 11040, Serbia",
     },
     {
       city: "Chennai",
@@ -487,7 +491,7 @@ export const blogPosts = [
 
 export const aboutContent = {
   mission:
-    "To empower enterprises worldwide with AI-powered intelligence that drives measurable business transformation.",
+    "To help businesses leverage technology through custom software, cloud solutions, AI-powered applications, and digital transformation — improving efficiency, accelerating growth, and achieving sustainable success.",
   vision:
     "A world where every organization can harness the full potential of artificial intelligence to innovate, compete, and thrive.",
   values: [
