@@ -3,7 +3,7 @@ export const siteConfig = {
   tagline: "Technology-Driven Software Innovation",
   description:
     "Bavanex Technologies is a technology-driven software company specializing in custom software development, cloud solutions, AI-powered applications, and digital transformation services. We help businesses leverage technology to improve efficiency, accelerate growth, and achieve sustainable success.",
-  email: "hello@bavanex.com",
+  email: "hello@bavanextechnologies.com",
   phone: "+32 465 119690",
   offices: [
     {
@@ -35,10 +35,22 @@ export const navLinks = [
   { label: "Contact", href: "/#contact" },
 ];
 
-export const trustedLogos = [
-  "Microsoft", "Amazon", "Google", "IBM", "Oracle",
-  "Salesforce", "Deloitte", "Accenture", "McKinsey", "PwC",
+/** Enterprise technologies & platforms the team builds on (not client logos). */
+export const technologyPartners = [
+  "Microsoft Azure",
+  "Amazon AWS",
+  "Google Cloud",
+  "Kubernetes",
+  "Python",
+  "React",
+  "Node.js",
+  "PostgreSQL",
+  "Snowflake",
+  "Databricks",
 ];
+
+/** @deprecated Use technologyPartners — kept for backward compatibility during migration */
+export const trustedLogos = technologyPartners;
 
 export const services = [
   {
@@ -343,10 +355,9 @@ export const caseStudies = [
     industry: "Retail",
     result: "32% increase in revenue through AI-driven pricing and demand forecasting.",
     image: "/images/case-retail.jpg",
-    client: "RetailMax International",
     duration: "6 months",
     summary:
-      "RetailMax partnered with Bavanex to deploy a dynamic pricing engine powered by machine learning, transforming how they respond to market demand across 2,000+ SKUs.",
+      "A leading retail enterprise partnered with Bavanex to deploy a dynamic pricing engine powered by machine learning, transforming how they respond to market demand across 2,000+ SKUs.",
     challenge:
       "Static pricing models failed to capture real-time demand signals, leading to margin erosion and lost revenue during peak seasons.",
     solution:
@@ -364,10 +375,9 @@ export const caseStudies = [
     industry: "Manufacturing",
     result: "45% reduction in inventory costs with predictive supply chain analytics.",
     image: "/images/case-supply.jpg",
-    client: "Apex Manufacturing Group",
     duration: "8 months",
     summary:
-      "Apex Manufacturing needed end-to-end visibility across a complex global supply chain. Bavanex delivered a predictive analytics platform that optimized inventory levels and reduced waste.",
+      "A global manufacturer needed end-to-end visibility across a complex global supply chain. Bavanex delivered a predictive analytics platform that optimized inventory levels and reduced waste.",
     challenge:
       "Fragmented data across ERP, warehouse, and logistics systems caused overstocking and frequent stockouts, costing millions annually.",
     solution:
@@ -385,10 +395,9 @@ export const caseStudies = [
     industry: "Banking",
     result: "3x improvement in customer retention with unified AI-powered insights.",
     image: "/images/case-banking.jpg",
-    client: "Global Finance Corp",
     duration: "10 months",
     summary:
-      "Global Finance Corp engaged Bavanex to unify customer data silos and deploy AI-driven personalization across their retail banking division serving 5M+ customers.",
+      "A major financial institution engaged Bavanex to unify customer data silos and deploy AI-driven personalization across their retail banking division serving 5M+ customers.",
     challenge:
       "Customer data was scattered across legacy CRM, mobile app, and branch systems, preventing personalized engagement and increasing churn.",
     solution:
@@ -501,10 +510,21 @@ export const aboutContent = {
     { title: "Impact", description: "We measure success by the tangible outcomes we create for our clients and their customers." },
   ],
   leadership: [
-    { name: "Rajesh Kumar", role: "CEO & Co-Founder", bio: "Former VP of AI at a Fortune 100 company with 20+ years in enterprise technology." },
-    { name: "Emily Watson", role: "CTO & Co-Founder", bio: "PhD in Machine Learning, previously led data science teams at Google and Databricks." },
-    { name: "David Okonkwo", role: "Chief Revenue Officer", bio: "Scaled three enterprise SaaS companies from Series A to IPO." },
-    { name: "Ananya Patel", role: "VP of Engineering", bio: "Architect of large-scale AI platforms serving millions of users globally." },
+    {
+      name: "Gokulakannan",
+      role: "Chief Executive Officer (CEO)",
+      bio: "Leads Bavanex Technologies with a focus on enterprise AI strategy, digital transformation, and global client delivery across Europe and India.",
+    },
+    {
+      name: "Sandeep Shenoy",
+      role: "Chief Technology Officer (CTO)",
+      bio: "Architects scalable cloud and AI platforms, ensuring security, reliability, and engineering excellence across all client engagements.",
+    },
+    {
+      name: "Nikita Reddy",
+      role: "Product Manager & Delivery Head",
+      bio: "Drives product vision and agile delivery, translating complex business requirements into high-impact software solutions.",
+    },
   ],
   image: "/images/about-team.jpg",
 };
@@ -538,8 +558,10 @@ export const solutionsContent = {
 export const footerLinks = {
   company: [
     { label: "About Us", href: "/about" },
-    { label: "Partners", href: "/about#partners" },
-    { label: "News", href: "/#blog" },
+    { label: "Request a Demo", href: "/request-demo" },
+    { label: "Trust Center", href: "/trust" },
+    { label: "Privacy Policy", href: "/privacy" },
+    { label: "Terms of Service", href: "/terms" },
   ],
   solutions: [
     { label: "AI Platform", href: "/solutions" },
@@ -554,16 +576,18 @@ export const footerLinks = {
     { label: "Automation", href: "/services/intelligent-automation" },
   ],
   resources: [
-    { label: "Blog", href: "/#blog" },
+    { label: "Resources Hub", href: "/resources" },
+    { label: "Blog", href: "/blog" },
     { label: "Case Studies", href: "/case-studies" },
-    { label: "Documentation", href: "/solutions" },
-    { label: "Webinars", href: "/#blog" },
+    { label: "Trust Center", href: "/trust" },
+    { label: "Pricing", href: "/pricing" },
+    { label: "Integrations", href: "/integrations" },
   ],
   careers: [
     { label: "Open Positions", href: "/#careers" },
     { label: "Culture", href: "/#careers" },
     { label: "Benefits", href: "/#careers" },
-    { label: "Apply Now", href: "/#contact" },
+    { label: "Apply Now", href: "/request-demo" },
   ],
 };
 

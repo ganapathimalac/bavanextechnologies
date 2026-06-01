@@ -1,7 +1,15 @@
 import { careers, platformFeatures, services, siteConfig } from "@/lib/data";
 import { chatFaqs } from "./faqs";
 import { getDefaultQuickReplies } from "./i18n";
-import type { ChatHistoryItem, ChatLanguage, ChatResponse, QuickReply } from "./types";
+import {
+  createInitialWorkflowState,
+  customerTypeReplies,
+  isCustomerIdentificationMessage,
+  isInServiceFlow,
+  processServiceFlow,
+  shouldStartServiceFlow,
+} from "./service-flow";
+import type { ChatHistoryItem, ChatLanguage, ChatResponse, QuickReply, ServiceWorkflowState } from "./types";
 
 const intentPatterns: Record<string, RegExp[]> = {
   greeting: [
@@ -111,12 +119,12 @@ function servicesOverview(lang: ChatLanguage): string {
 
 function greetingMessage(lang: ChatLanguage): string {
   const msgs: Record<ChatLanguage, string> = {
-    en: "Hello! 👋 Great to meet you. I'm here 24/7 to help with services, support, scheduling, and more. What would you like to explore?",
-    fr: "Bonjour ! 👋 Ravi de vous aider 24h/24. Services, support, rendez-vous — que souhaitez-vous savoir ?",
-    nl: "Hallo! 👋 Fijn dat u er bent. Ik help u 24/7 met diensten, support en afspraken. Waarmee kan ik helpen?",
-    de: "Hallo! 👋 Schön, Sie kennenzulernen. Ich helfe Ihnen rund um die Uhr. Wobei kann ich helfen?",
-    ta: "Hello! 👋 How can I help you today?",
-    hi: "Hello! 👋 How can I help you today?",
+    en: "Welcome! I'd be happy to assist you. Are you an **existing customer** or a **new customer**?",
+    fr: "Bienvenue ! Je suis ravi de vous aider. Êtes-vous un **client existant** ou un **nouveau client** ?",
+    nl: "Welkom! Ik help u graag. Bent u een **bestaande klant** of een **nieuwe klant**?",
+    de: "Willkommen! Gerne helfe ich Ihnen. Sind Sie ein **Bestandskunde** oder ein **Neukunde**?",
+    ta: "Welcome! Are you an **existing customer** or a **new customer**?",
+    hi: "Welcome! Are you an **existing customer** or a **new customer**?",
   };
   return msgs[lang] ?? msgs.en;
 }
@@ -129,17 +137,39 @@ function faqListMessage(lang: ChatLanguage): string {
 export function processChatMessage(
   message: string,
   language: ChatLanguage = "en",
-  _history: ChatHistoryItem[] = []
+  _history: ChatHistoryItem[] = [],
+  workflowState?: ServiceWorkflowState | null
 ): ChatResponse {
   const text = normalize(message);
   const quickReplies = getDefaultQuickReplies(language);
 
+  const activeFlow = workflowState && isInServiceFlow(workflowState);
+  const startFlow = shouldStartServiceFlow(message);
+  const inCustomerStep =
+    workflowState?.step === "customer_type" && isCustomerIdentificationMessage(message);
+
+  if (activeFlow || startFlow || inCustomerStep) {
+    const state = workflowState ?? createInitialWorkflowState();
+    const { response, state: nextState } = processServiceFlow(message, state);
+    return { ...response, workflowState: nextState };
+  }
+
   if (!text) {
-    return { message: greetingMessage(language), quickReplies, intent: "greeting" };
+    return {
+      message: greetingMessage(language),
+      quickReplies: customerTypeReplies(),
+      intent: "greeting",
+      workflowState: createInitialWorkflowState(),
+    };
   }
 
   if (matchesAny(text, intentPatterns.greeting)) {
-    return { message: greetingMessage(language), quickReplies, intent: "greeting" };
+    return {
+      message: greetingMessage(language),
+      quickReplies: customerTypeReplies(),
+      intent: "greeting",
+      workflowState: createInitialWorkflowState(),
+    };
   }
 
   if (matchesAny(text, intentPatterns.thanks)) {
@@ -165,6 +195,12 @@ export function processChatMessage(
       quickReplies: [{ id: "contact", label: "Contact Info", payload: "What are your contact details?" }],
       intent: "escalation",
     };
+  }
+
+  if (/\b(service request|support ticket|report issue|raise ticket|submit request|need service)\b/i.test(text)) {
+    const state = createInitialWorkflowState();
+    const { response, state: nextState } = processServiceFlow(message, state);
+    return { ...response, workflowState: nextState };
   }
 
   if (matchesAny(text, intentPatterns.appointment)) {
@@ -193,7 +229,7 @@ export function processChatMessage(
     return {
       message: contactMessage(language),
       quickReplies,
-      action: { type: "link", href: "/#contact", label: "Open contact form" },
+      action: { type: "link", href: "/request-demo", label: "Request a demo" },
       intent: "contact",
     };
   }

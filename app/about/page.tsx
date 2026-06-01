@@ -87,6 +87,35 @@ export default function AboutPage() {
 
       <StatsSection />
 
+      <section className="section-padding surface-section">
+        <div className="container-max">
+          <FadeIn className="mx-auto max-w-2xl text-center">
+            <span className="text-sm font-semibold uppercase tracking-widest text-accent-blue">
+              Leadership
+            </span>
+            <h2 className="mt-3 font-display text-3xl font-bold sm:text-4xl">
+              Meet Our Leadership Team
+            </h2>
+            <p className="mt-4 text-muted">
+              Experienced executives driving innovation, delivery, and client success across global markets.
+            </p>
+          </FadeIn>
+          <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {aboutContent.leadership.map((leader, i) => (
+              <FadeIn key={leader.name} delay={i * 0.08}>
+                <Card className="h-full border-white/10 bg-white/5">
+                  <CardContent className="p-6">
+                    <h3 className="font-display text-lg font-semibold text-white">{leader.name}</h3>
+                    <p className="mt-1 text-sm font-medium text-accent-cyan">{leader.role}</p>
+                    <p className="mt-3 text-sm leading-relaxed text-muted">{leader.bio}</p>
+                  </CardContent>
+                </Card>
+              </FadeIn>
+            ))}
+          </div>
+        </div>
+      </section>
+
       <section id="partners" className="section-padding surface-section">
         <div className="container-max text-center">
           <FadeIn>
@@ -94,9 +123,9 @@ export default function AboutPage() {
             <p className="mx-auto mt-4 max-w-xl text-muted">
               Join 100+ enterprise clients who trust Bavanex to power their AI transformation.
             </p>
-            <Link href="/#contact" className="mt-8 inline-block">
+            <Link href="/request-demo" className="mt-8 inline-block">
               <Button size="lg">
-                Get in Touch <ArrowRight size={18} />
+                Request a Demo <ArrowRight size={18} />
               </Button>
             </Link>
           </FadeIn>

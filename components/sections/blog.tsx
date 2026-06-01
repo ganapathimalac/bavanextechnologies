@@ -59,6 +59,14 @@ export function BlogSection() {
             </FadeIn>
           ))}
         </div>
+        <FadeIn className="mt-12 text-center">
+          <Link
+            href="/blog"
+            className="inline-flex items-center gap-2 text-sm font-medium text-accent-cyan hover:text-white transition-colors"
+          >
+            View all articles <ArrowRight size={14} />
+          </Link>
+        </FadeIn>
       </div>
     </section>
   );

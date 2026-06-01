@@ -4,7 +4,22 @@ import { caseStudies, blogPosts, services } from "@/lib/data";
 const baseUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://bavanextechnologies.com";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const staticPages = ["", "/about", "/solutions", "/services", "/case-studies"].map((path) => ({
+  const staticPages = [
+    "",
+    "/about",
+    "/solutions",
+    "/services",
+    "/case-studies",
+    "/request-demo",
+    "/trust",
+    "/blog",
+    "/pricing",
+    "/integrations",
+    "/resources",
+    "/privacy",
+    "/terms",
+    "/cookies",
+  ].map((path) => ({
     url: `${baseUrl}${path}`,
     lastModified: new Date(),
     changeFrequency: "weekly" as const,

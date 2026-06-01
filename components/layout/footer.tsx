@@ -65,10 +65,10 @@ export function Footer() {
           <p className="text-sm text-muted">
             &copy; 2022 {siteConfig.name}. All rights reserved.
           </p>
-          <div className="flex gap-6 text-sm text-muted">
-            <Link href="#" className="hover:text-white">Privacy Policy</Link>
-            <Link href="#" className="hover:text-white">Terms of Service</Link>
-            <Link href="#" className="hover:text-white">Cookie Policy</Link>
+          <div className="flex flex-wrap justify-center gap-6 text-sm text-muted sm:justify-end">
+            <Link href="/privacy" className="hover:text-white">Privacy Policy</Link>
+            <Link href="/terms" className="hover:text-white">Terms of Service</Link>
+            <Link href="/cookies" className="hover:text-white">Cookie Policy</Link>
           </div>
         </div>
       </div>

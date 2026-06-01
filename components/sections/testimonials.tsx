@@ -13,15 +13,18 @@ export function TestimonialsSection() {
   const prev = () => setCurrent((c) => (c - 1 + testimonials.length) % testimonials.length);
 
   return (
-    <section className="section-padding">
+    <section id="leadership" className="section-padding">
       <div className="container-max">
         <FadeIn className="mx-auto max-w-2xl text-center">
           <span className="text-sm font-semibold uppercase tracking-widest text-accent-blue">
-            Testimonials
+            Leadership
           </span>
           <h2 className="mt-3 font-display text-3xl font-bold sm:text-4xl lg:text-5xl">
-            What Our Clients Say
+            From Our Leadership Team
           </h2>
+          <p className="mt-4 text-muted">
+            Perspectives on enterprise AI, engineering excellence, and client delivery.
+          </p>
         </FadeIn>
 
         <FadeIn delay={0.2}>
@@ -46,6 +49,7 @@ export function TestimonialsSection() {
                   <div className="mt-8 flex flex-col items-center gap-1">
                     <p className="font-semibold text-white">{testimonials[current].name}</p>
                     <p className="text-sm text-muted">{testimonials[current].role}</p>
+                    <p className="text-xs text-accent-cyan">{testimonials[current].company}</p>
                   </div>
                 </motion.div>
               </AnimatePresence>

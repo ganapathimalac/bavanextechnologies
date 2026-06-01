@@ -93,10 +93,6 @@ export default async function CaseStudyDetailPage({ params }: Props) {
                 <h3 className="font-semibold text-white">Project Details</h3>
                 <dl className="mt-4 space-y-4 text-sm">
                   <div>
-                    <dt className="text-muted">Client</dt>
-                    <dd className="font-medium text-white">{study.client}</dd>
-                  </div>
-                  <div>
                     <dt className="text-muted">Industry</dt>
                     <dd className="font-medium text-white">{study.industry}</dd>
                   </div>
@@ -109,7 +105,7 @@ export default async function CaseStudyDetailPage({ params }: Props) {
                     <dd className="font-medium text-accent-cyan">{study.result}</dd>
                   </div>
                 </dl>
-                <Link href="/#contact" className="mt-6 block">
+                <Link href="/request-demo" className="mt-6 block">
                   <Button className="w-full">
                     Start Your Project <ArrowRight size={16} />
                   </Button>

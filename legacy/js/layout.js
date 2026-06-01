@@ -93,7 +93,7 @@
     return `<footer class="site-footer">
       <div class="container footer-grid">${cols}</div>
       <div class="container footer-bottom">
-        <p>Copyright &copy; 2026 Bavanex Technologies. All Rights Reserved</p>
+        <p>Copyright &copy; 2022 Bavanex Technologies. All Rights Reserved</p>
         <div class="footer-legal">${legal}</div>
         <div class="footer-social">${social}</div>
         <div class="footer-lang">English</div>

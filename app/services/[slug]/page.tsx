@@ -7,8 +7,11 @@ import {
 } from "lucide-react";
 import { PageHero } from "@/components/layout/page-hero";
 import { FadeIn } from "@/components/motion/fade-in";
+import { DeliveryProcessInline } from "@/components/sections/delivery-process";
+import { FaqAccordion } from "@/components/shared/faq-accordion";
 import { Button } from "@/components/ui/button";
 import { services, getService } from "@/lib/data";
+import { serviceFaqs } from "@/lib/site-pages";
 
 type Props = { params: Promise<{ slug: string }> };
 
@@ -99,6 +102,17 @@ export default async function ServiceDetailPage({ params }: Props) {
                   ))}
                 </ul>
               </FadeIn>
+
+              <FadeIn delay={0.25}>
+                <DeliveryProcessInline />
+              </FadeIn>
+
+              <FadeIn delay={0.3} className="mt-10">
+                <h2 className="text-2xl font-bold text-white">Frequently Asked Questions</h2>
+                <div className="mt-6">
+                  <FaqAccordion items={serviceFaqs} defaultOpen={null} />
+                </div>
+              </FadeIn>
             </div>
 
             <FadeIn direction="right" delay={0.1}>
@@ -130,7 +144,7 @@ export default async function ServiceDetailPage({ params }: Props) {
                   </div>
                 </div>
 
-                <Link href="/#contact">
+                <Link href="/request-demo">
                   <Button className="w-full">
                     Request a Consultation <ArrowRight size={16} />
                   </Button>

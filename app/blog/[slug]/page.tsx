@@ -36,7 +36,7 @@ export default async function BlogPostPage({ params }: Props) {
         description={post.excerpt}
         breadcrumbs={[
           { label: "Home", href: "/" },
-          { label: "Blog", href: "/#blog" },
+          { label: "Blog", href: "/blog" },
           { label: post.title },
         ]}
       />

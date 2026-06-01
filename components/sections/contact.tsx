@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import { Mail, Phone, MapPin, Send, AlertCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -28,8 +29,8 @@ const chennaiOffice =
   siteConfig.offices[siteConfig.offices.length - 1];
 
 export function ContactSection() {
+  const router = useRouter();
   const [form, setForm] = useState<FormState>(initialForm);
-  const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -58,8 +59,7 @@ export function ContactSection() {
         return;
       }
 
-      setSubmitted(true);
-      setForm(initialForm);
+      router.push("/thank-you?type=contact");
     } catch {
       setError("Network error. Please check your connection and try again.");
     } finally {
@@ -86,23 +86,7 @@ export function ContactSection() {
           <FadeIn direction="left">
             <Card>
               <CardContent className="p-8">
-                {submitted ? (
-                  <div className="py-12 text-center">
-                    <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-accent-blue/20 text-accent-blue">
-                      <Send size={28} />
-                    </div>
-                    <h3 className="text-xl font-semibold">Thank you!</h3>
-                    <p className="mt-2 text-muted">We&apos;ll be in touch within 24 hours.</p>
-                    <Button
-                      variant="secondary"
-                      className="mt-6"
-                      onClick={() => setSubmitted(false)}
-                    >
-                      Send Another Message
-                    </Button>
-                  </div>
-                ) : (
-                  <form onSubmit={handleSubmit} className="space-y-5" noValidate>
+                <form onSubmit={handleSubmit} className="space-y-5" noValidate>
                     {error && (
                       <div
                         role="alert"
@@ -190,7 +174,6 @@ export function ContactSection() {
                       {loading ? "Sending..." : "Send Message"} {!loading && <Send size={16} />}
                     </Button>
                   </form>
-                )}
               </CardContent>
             </Card>
           </FadeIn>

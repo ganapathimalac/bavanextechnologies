@@ -25,9 +25,13 @@
   }
 
   body {
-    @apply overflow-x-hidden text-white antialiased;
+    @apply overflow-x-hidden font-sans text-white antialiased;
     min-height: 100dvh;
     min-height: 100vh;
+    font-feature-settings: "kern" 1, "liga" 1, "calt" 1;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
     background-color: #131c31;
     background-image:
       radial-gradient(ellipse 90% 60% at 50% -10%, rgba(79, 142, 247, 0.1) 0%, transparent 55%),
@@ -64,6 +68,20 @@
   svg {
     max-width: 100%;
     height: auto;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-display tracking-display;
+    text-wrap: balance;
+  }
+
+  p {
+    @apply leading-relaxed;
   }
 }
 

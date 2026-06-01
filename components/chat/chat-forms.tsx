@@ -4,13 +4,13 @@ import { useState } from "react";
 import { AlertCircle, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { getUiStrings } from "@/lib/chat/i18n";
-import type { ChatFormType } from "@/lib/chat/types";
+import type { ChatFormType, ServicePriority, ServiceWorkflowState } from "@/lib/chat/types";
 import type { UseChatReturn } from "@/hooks/use-chat";
 
 type FormProps = {
   chat: UseChatReturn;
   formType: ChatFormType;
-  onSuccess: (message: string) => void;
+  onSuccess: (message: string, extras?: { quickReplies?: { id: string; label: string; payload: string }[]; workflowState?: ServiceWorkflowState; nextForm?: ChatFormType }) => void;
 };
 
 const inputClass =
@@ -38,9 +38,26 @@ export function ChatInlineForm({ chat, formType, onSuccess }: FormProps) {
     priority: "normal" as "normal" | "urgent",
     summary: "",
   });
+  const [newCustomer, setNewCustomer] = useState({
+    fullName: "",
+    email: "",
+    phone: "",
+    company: "",
+    location: "",
+    preferredContact: "email",
+  });
+  const [serviceRequest, setServiceRequest] = useState({
+    serviceType: "",
+    productName: "",
+    issueCategory: "",
+    description: "",
+    priority: "Medium" as ServicePriority,
+    preferredDate: "",
+    serviceLocation: "",
+  });
 
   const conversationSummary = chat.messages
-    .slice(-8)
+    .slice(-12)
     .map((m) => `${m.role}: ${m.content}`)
     .join("\n");
 
@@ -53,6 +70,8 @@ export function ChatInlineForm({ chat, formType, onSuccess }: FormProps) {
       show_lead_form: "/api/chat/lead",
       show_appointment_form: "/api/chat/appointment",
       show_escalation_form: "/api/chat/escalate",
+      show_new_customer_form: "/api/chat/new-customer",
+      show_service_request_form: "/api/chat/service-request",
     };
 
     const payloads: Record<string, object> = {
@@ -63,6 +82,21 @@ export function ChatInlineForm({ chat, formType, onSuccess }: FormProps) {
         sessionId: chat.sessionId,
         language: chat.language,
         conversationSummary,
+      },
+      show_new_customer_form: {
+        ...newCustomer,
+        sessionId: chat.sessionId,
+        language: chat.language,
+        workflowState: chat.workflowState,
+      },
+      show_service_request_form: {
+        sessionId: chat.sessionId,
+        language: chat.language,
+        customer: chat.workflowState?.customer,
+        service: serviceRequest,
+        conversationSummary,
+        workflowState: chat.workflowState,
+        confirm: false,
       },
     };
 
@@ -77,8 +111,18 @@ export function ChatInlineForm({ chat, formType, onSuccess }: FormProps) {
         setError(data.error ?? "Submission failed.");
         return;
       }
+
       chat.dismissForm();
-      onSuccess(data.message ?? ui.submitSuccess);
+
+      if (data.workflowState) {
+        chat.setWorkflowStateFromForm(data.workflowState);
+      }
+
+      onSuccess(data.message ?? ui.submitSuccess, {
+        quickReplies: data.quickReplies,
+        workflowState: data.workflowState,
+        nextForm: data.action?.type?.startsWith("show_") ? (data.action.type as ChatFormType) : undefined,
+      });
     } catch {
       setError(ui.networkError);
     } finally {
@@ -90,12 +134,16 @@ export function ChatInlineForm({ chat, formType, onSuccess }: FormProps) {
     show_lead_form: ui.leadTitle,
     show_appointment_form: ui.appointmentTitle,
     show_escalation_form: ui.escalationTitle,
+    show_new_customer_form: ui.newCustomerTitle,
+    show_service_request_form: ui.serviceRequestTitle,
   };
 
   const submitLabels: Record<string, string> = {
     show_lead_form: ui.leadSubmit,
     show_appointment_form: ui.appointmentSubmit,
     show_escalation_form: ui.escalationSubmit,
+    show_new_customer_form: ui.newCustomerSubmit,
+    show_service_request_form: ui.serviceRequestSubmit,
   };
 
   return (
@@ -142,6 +190,46 @@ export function ChatInlineForm({ chat, formType, onSuccess }: FormProps) {
             <option value="urgent">{ui.priorityUrgent}</option>
           </select>
           <textarea className={`${inputClass} min-h-[60px] resize-none`} placeholder={ui.summary} value={escalation.summary} onChange={(e) => setEscalation({ ...escalation, summary: e.target.value })} required />
+        </>
+      )}
+
+      {formType === "show_new_customer_form" && (
+        <>
+          <input className={inputClass} placeholder={ui.name} value={newCustomer.fullName} onChange={(e) => setNewCustomer({ ...newCustomer, fullName: e.target.value })} required />
+          <input className={inputClass} placeholder={ui.company} value={newCustomer.company} onChange={(e) => setNewCustomer({ ...newCustomer, company: e.target.value })} />
+          <input className={inputClass} type="email" placeholder={ui.email} value={newCustomer.email} onChange={(e) => setNewCustomer({ ...newCustomer, email: e.target.value })} required />
+          <input className={inputClass} type="tel" placeholder={ui.phone} value={newCustomer.phone} onChange={(e) => setNewCustomer({ ...newCustomer, phone: e.target.value })} required />
+          <input className={inputClass} placeholder={ui.location} value={newCustomer.location} onChange={(e) => setNewCustomer({ ...newCustomer, location: e.target.value })} required />
+          <select
+            className={inputClass}
+            value={newCustomer.preferredContact}
+            onChange={(e) => setNewCustomer({ ...newCustomer, preferredContact: e.target.value })}
+          >
+            <option value="email">{ui.contactEmail}</option>
+            <option value="phone">{ui.contactPhone}</option>
+            <option value="both">{ui.contactBoth}</option>
+          </select>
+        </>
+      )}
+
+      {formType === "show_service_request_form" && (
+        <>
+          <input className={inputClass} placeholder={ui.serviceType} value={serviceRequest.serviceType} onChange={(e) => setServiceRequest({ ...serviceRequest, serviceType: e.target.value })} required />
+          <input className={inputClass} placeholder={ui.productName} value={serviceRequest.productName} onChange={(e) => setServiceRequest({ ...serviceRequest, productName: e.target.value })} />
+          <input className={inputClass} placeholder={ui.issueCategory} value={serviceRequest.issueCategory} onChange={(e) => setServiceRequest({ ...serviceRequest, issueCategory: e.target.value })} required />
+          <textarea className={`${inputClass} min-h-[60px] resize-none`} placeholder={ui.description} value={serviceRequest.description} onChange={(e) => setServiceRequest({ ...serviceRequest, description: e.target.value })} required />
+          <select
+            className={inputClass}
+            value={serviceRequest.priority}
+            onChange={(e) => setServiceRequest({ ...serviceRequest, priority: e.target.value as ServicePriority })}
+          >
+            <option value="Low">{ui.priorityLow}</option>
+            <option value="Medium">{ui.priorityMedium}</option>
+            <option value="High">{ui.priorityHigh}</option>
+            <option value="Critical">{ui.priorityCritical}</option>
+          </select>
+          <input className={inputClass} type="date" placeholder={ui.preferredDate} value={serviceRequest.preferredDate} onChange={(e) => setServiceRequest({ ...serviceRequest, preferredDate: e.target.value })} />
+          <input className={inputClass} placeholder={ui.serviceLocation} value={serviceRequest.serviceLocation} onChange={(e) => setServiceRequest({ ...serviceRequest, serviceLocation: e.target.value })} required />
         </>
       )}
 

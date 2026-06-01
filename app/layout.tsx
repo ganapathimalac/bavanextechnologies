@@ -1,22 +1,27 @@
 import type { Metadata, Viewport } from "next";
-import { Inter, Plus_Jakarta_Sans } from "next/font/google";
+import { Manrope, Source_Sans_3 } from "next/font/google";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
 import { ChatWidget } from "@/components/chat/chat-widget";
 import { Spotlight } from "@/components/effects/spotlight";
+import { GoogleAnalytics } from "@/components/analytics/google-analytics";
+import { JsonLd } from "@/components/seo/json-ld";
 import { siteConfig } from "@/lib/data";
+import { organizationJsonLd, websiteJsonLd } from "@/lib/site-pages";
 import "./globals.css";
 
-const inter = Inter({
+const sourceSans = Source_Sans_3({
   subsets: ["latin"],
-  variable: "--font-inter",
+  variable: "--font-source-sans",
   display: "swap",
+  weight: ["400", "500", "600", "700"],
 });
 
-const jakarta = Plus_Jakarta_Sans({
+const manrope = Manrope({
   subsets: ["latin"],
-  variable: "--font-jakarta",
+  variable: "--font-manrope",
   display: "swap",
+  weight: ["500", "600", "700", "800"],
 });
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://bavanextechnologies.com";
@@ -68,7 +73,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className="dark">
-      <body className={`${inter.variable} ${jakarta.variable} font-sans`}>
+      <body className={`${sourceSans.variable} ${manrope.variable} font-sans`}>
+        <JsonLd data={[organizationJsonLd, websiteJsonLd]} />
+        <GoogleAnalytics />
         <a
           href="#main-content"
           className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded-lg focus:bg-accent-blue focus:px-4 focus:py-2 focus:text-white"

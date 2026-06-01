@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -9,9 +10,33 @@ import { Logo } from "@/components/brand/logo";
 import { navLinks } from "@/lib/data";
 import { cn } from "@/lib/utils";
 
+function isNavLinkActive(href: string, pathname: string, hash: string) {
+  const [path, linkHash] = href.split("#");
+  const normalizedPath = path || "/";
+
+  if (linkHash) {
+    return pathname === normalizedPath && hash === `#${linkHash}`;
+  }
+
+  if (normalizedPath === "/") {
+    return pathname === "/";
+  }
+
+  return pathname === normalizedPath || pathname.startsWith(`${normalizedPath}/`);
+}
+
 export function Header() {
+  const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [hash, setHash] = useState("");
+
+  useEffect(() => {
+    const syncHash = () => setHash(window.location.hash);
+    syncHash();
+    window.addEventListener("hashchange", syncHash);
+    return () => window.removeEventListener("hashchange", syncHash);
+  }, [pathname]);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
@@ -25,6 +50,22 @@ export function Header() {
       document.body.style.overflow = "";
     };
   }, [mobileOpen]);
+
+  const desktopLinkClass = (href: string) =>
+    cn(
+      "relative text-sm transition-colors",
+      isNavLinkActive(href, pathname, hash)
+        ? "font-semibold text-white after:absolute after:-bottom-1 after:left-0 after:h-0.5 after:w-full after:rounded-full after:bg-accent-cyan"
+        : "text-muted hover:text-white active:text-white"
+    );
+
+  const mobileLinkClass = (href: string) =>
+    cn(
+      "touch-target flex items-center rounded-lg px-4 py-3 text-base transition-colors",
+      isNavLinkActive(href, pathname, hash)
+        ? "bg-accent-blue/15 font-semibold text-white"
+        : "text-muted active:bg-white/10 active:text-white"
+    );
 
   return (
     <header
@@ -45,7 +86,8 @@ export function Header() {
             <Link
               key={link.href}
               href={link.href}
-              className="text-sm text-muted transition-colors hover:text-white active:text-white"
+              className={desktopLinkClass(link.href)}
+              aria-current={isNavLinkActive(link.href, pathname, hash) ? "page" : undefined}
             >
               {link.label}
             </Link>
@@ -56,7 +98,7 @@ export function Header() {
           <Link href="/login">
             <Button variant="ghost" size="sm">Sign In</Button>
           </Link>
-          <Link href="/#contact">
+          <Link href="/request-demo">
             <Button size="sm">Request Demo</Button>
           </Link>
         </div>
@@ -85,7 +127,8 @@ export function Header() {
                 <Link
                   key={link.href}
                   href={link.href}
-                  className="touch-target flex items-center rounded-lg px-4 py-3 text-base text-muted transition-colors active:bg-white/10 active:text-white"
+                  className={mobileLinkClass(link.href)}
+                  aria-current={isNavLinkActive(link.href, pathname, hash) ? "page" : undefined}
                   onClick={() => setMobileOpen(false)}
                 >
                   {link.label}
@@ -94,7 +137,7 @@ export function Header() {
               <Link href="/login" onClick={() => setMobileOpen(false)} className="mt-2 block">
                 <Button variant="secondary" className="w-full min-h-[48px]">Sign In</Button>
               </Link>
-              <Link href="/#contact" onClick={() => setMobileOpen(false)} className="mt-2 block">
+              <Link href="/request-demo" onClick={() => setMobileOpen(false)} className="mt-2 block">
                 <Button className="w-full min-h-[48px]">Request Demo</Button>
               </Link>
             </nav>

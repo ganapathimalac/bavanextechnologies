@@ -22,8 +22,12 @@ const config: Config = {
         muted: "#B8C5D9",
       },
       fontFamily: {
-        sans: ["var(--font-inter)", "system-ui", "sans-serif"],
-        display: ["var(--font-jakarta)", "var(--font-inter)", "sans-serif"],
+        sans: ["var(--font-source-sans)", "system-ui", "sans-serif"],
+        display: ["var(--font-manrope)", "var(--font-source-sans)", "sans-serif"],
+      },
+      letterSpacing: {
+        display: "-0.025em",
+        tight: "-0.015em",
       },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",

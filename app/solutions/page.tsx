@@ -97,7 +97,7 @@ export default function SolutionsPage() {
             ))}
           </div>
           <FadeIn className="mt-12 text-center">
-            <Link href="/#contact">
+            <Link href="/request-demo">
               <Button size="lg">
                 Schedule a Demo <ArrowRight size={18} />
               </Button>

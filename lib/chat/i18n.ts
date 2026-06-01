@@ -33,6 +33,26 @@ type UiStrings = {
   appointmentSubmit: string;
   escalationTitle: string;
   escalationSubmit: string;
+  newCustomerTitle: string;
+  newCustomerSubmit: string;
+  serviceRequestTitle: string;
+  serviceRequestSubmit: string;
+  serviceType: string;
+  productName: string;
+  issueCategory: string;
+  description: string;
+  priorityLevel: string;
+  priorityLow: string;
+  priorityMedium: string;
+  priorityHigh: string;
+  priorityCritical: string;
+  preferredDate: string;
+  serviceLocation: string;
+  preferredContact: string;
+  contactEmail: string;
+  contactPhone: string;
+  contactBoth: string;
+  location: string;
   firstName: string;
   lastName: string;
   email: string;
@@ -56,7 +76,7 @@ type UiStrings = {
 const ui: Record<ChatLanguage, UiStrings> = {
   en: {
     welcome:
-      "Hello! 👋 I'm your virtual assistant, available 24/7 to help with your questions, services, and support needs.",
+      "Welcome! I'd be happy to assist you. Are you an existing customer or a new customer?",
     placeholder: "Type your message…",
     send: "Send",
     attach: "Attach file",
@@ -79,6 +99,26 @@ const ui: Record<ChatLanguage, UiStrings> = {
     appointmentSubmit: "Book appointment",
     escalationTitle: "Connect with a human agent",
     escalationSubmit: "Request callback",
+    newCustomerTitle: "New customer registration",
+    newCustomerSubmit: "Register & continue",
+    serviceRequestTitle: "Service request details",
+    serviceRequestSubmit: "Review summary",
+    serviceType: "Service type",
+    productName: "Product / equipment name",
+    issueCategory: "Issue category",
+    description: "Detailed description",
+    priorityLevel: "Priority level",
+    priorityLow: "Low",
+    priorityMedium: "Medium",
+    priorityHigh: "High",
+    priorityCritical: "Critical",
+    preferredDate: "Preferred service date",
+    serviceLocation: "Service location",
+    preferredContact: "Preferred contact method",
+    contactEmail: "Email",
+    contactPhone: "Phone",
+    contactBoth: "Email & Phone",
+    location: "Location",
     firstName: "First name",
     lastName: "Last name",
     email: "Email",
@@ -123,6 +163,26 @@ const ui: Record<ChatLanguage, UiStrings> = {
     appointmentSubmit: "Réserver",
     escalationTitle: "Parler à un conseiller",
     escalationSubmit: "Demander un rappel",
+    newCustomerTitle: "Inscription nouveau client",
+    newCustomerSubmit: "S'inscrire et continuer",
+    serviceRequestTitle: "Détails de la demande",
+    serviceRequestSubmit: "Vérifier le résumé",
+    serviceType: "Type de service",
+    productName: "Produit / équipement",
+    issueCategory: "Catégorie du problème",
+    description: "Description détaillée",
+    priorityLevel: "Priorité",
+    priorityLow: "Faible",
+    priorityMedium: "Moyenne",
+    priorityHigh: "Élevée",
+    priorityCritical: "Critique",
+    preferredDate: "Date souhaitée",
+    serviceLocation: "Lieu du service",
+    preferredContact: "Contact préféré",
+    contactEmail: "E-mail",
+    contactPhone: "Téléphone",
+    contactBoth: "E-mail et téléphone",
+    location: "Localisation",
     firstName: "Prénom",
     lastName: "Nom",
     email: "E-mail",
@@ -167,6 +227,26 @@ const ui: Record<ChatLanguage, UiStrings> = {
     appointmentSubmit: "Afspraak boeken",
     escalationTitle: "Spreek met een medewerker",
     escalationSubmit: "Terugbelverzoek",
+    newCustomerTitle: "Nieuwe klant registratie",
+    newCustomerSubmit: "Registreren & doorgaan",
+    serviceRequestTitle: "Serviceaanvraag details",
+    serviceRequestSubmit: "Samenvatting bekijken",
+    serviceType: "Type service",
+    productName: "Product / apparaat",
+    issueCategory: "Probleemcategorie",
+    description: "Gedetailleerde beschrijving",
+    priorityLevel: "Prioriteit",
+    priorityLow: "Laag",
+    priorityMedium: "Gemiddeld",
+    priorityHigh: "Hoog",
+    priorityCritical: "Kritiek",
+    preferredDate: "Gewenste datum",
+    serviceLocation: "Servicelocatie",
+    preferredContact: "Voorkeurscontact",
+    contactEmail: "E-mail",
+    contactPhone: "Telefoon",
+    contactBoth: "E-mail & telefoon",
+    location: "Locatie",
     firstName: "Voornaam",
     lastName: "Achternaam",
     email: "E-mail",
@@ -211,6 +291,26 @@ const ui: Record<ChatLanguage, UiStrings> = {
     appointmentSubmit: "Termin buchen",
     escalationTitle: "Mit Mitarbeiter sprechen",
     escalationSubmit: "Rückruf anfordern",
+    newCustomerTitle: "Neukunden-Registrierung",
+    newCustomerSubmit: "Registrieren & fortfahren",
+    serviceRequestTitle: "Serviceanfrage Details",
+    serviceRequestSubmit: "Zusammenfassung prüfen",
+    serviceType: "Service-Typ",
+    productName: "Produkt / Gerät",
+    issueCategory: "Problemkategorie",
+    description: "Detaillierte Beschreibung",
+    priorityLevel: "Priorität",
+    priorityLow: "Niedrig",
+    priorityMedium: "Mittel",
+    priorityHigh: "Hoch",
+    priorityCritical: "Kritisch",
+    preferredDate: "Wunschdatum",
+    serviceLocation: "Service-Standort",
+    preferredContact: "Bevorzugter Kontakt",
+    contactEmail: "E-Mail",
+    contactPhone: "Telefon",
+    contactBoth: "E-Mail & Telefon",
+    location: "Standort",
     firstName: "Vorname",
     lastName: "Nachname",
     email: "E-Mail",
@@ -255,6 +355,26 @@ const ui: Record<ChatLanguage, UiStrings> = {
     appointmentSubmit: "Book",
     escalationTitle: "Human agent",
     escalationSubmit: "Callback request",
+    newCustomerTitle: "New customer registration",
+    newCustomerSubmit: "Register & continue",
+    serviceRequestTitle: "Service request details",
+    serviceRequestSubmit: "Review summary",
+    serviceType: "Service type",
+    productName: "Product / equipment",
+    issueCategory: "Issue category",
+    description: "Detailed description",
+    priorityLevel: "Priority",
+    priorityLow: "Low",
+    priorityMedium: "Medium",
+    priorityHigh: "High",
+    priorityCritical: "Critical",
+    preferredDate: "Preferred date",
+    serviceLocation: "Service location",
+    preferredContact: "Preferred contact",
+    contactEmail: "Email",
+    contactPhone: "Phone",
+    contactBoth: "Email & Phone",
+    location: "Location",
     firstName: "First name",
     lastName: "Last name",
     email: "Email",
@@ -299,6 +419,26 @@ const ui: Record<ChatLanguage, UiStrings> = {
     appointmentSubmit: "Book",
     escalationTitle: "Human agent",
     escalationSubmit: "Callback request",
+    newCustomerTitle: "New customer registration",
+    newCustomerSubmit: "Register & continue",
+    serviceRequestTitle: "Service request details",
+    serviceRequestSubmit: "Review summary",
+    serviceType: "Service type",
+    productName: "Product / equipment",
+    issueCategory: "Issue category",
+    description: "Detailed description",
+    priorityLevel: "Priority",
+    priorityLow: "Low",
+    priorityMedium: "Medium",
+    priorityHigh: "High",
+    priorityCritical: "Critical",
+    preferredDate: "Preferred date",
+    serviceLocation: "Service location",
+    preferredContact: "Preferred contact",
+    contactEmail: "Email",
+    contactPhone: "Phone",
+    contactBoth: "Email & Phone",
+    location: "Location",
     firstName: "First name",
     lastName: "Last name",
     email: "Email",
@@ -327,11 +467,11 @@ export function getUiStrings(lang: ChatLanguage): UiStrings {
 export function getDefaultQuickReplies(lang: ChatLanguage) {
   const map: Record<ChatLanguage, { id: string; label: string; payload: string }[]> = {
     en: [
+      { id: "existing", label: "Existing Customer", payload: "I am an existing customer" },
+      { id: "new", label: "New Customer", payload: "I am a new customer" },
+      { id: "service", label: "Service Request", payload: "I need to submit a service request" },
       { id: "services", label: "Our Services", payload: "Tell me about your services" },
-      { id: "demo", label: "Request a Demo", payload: "I would like to request a demo" },
       { id: "contact", label: "Contact Info", payload: "What are your contact details?" },
-      { id: "faq", label: "FAQs", payload: "Show me frequently asked questions" },
-      { id: "appointment", label: "Book Appointment", payload: "I want to schedule an appointment" },
       { id: "human", label: "Talk to Human", payload: "I need to speak with a human agent" },
     ],
     fr: [

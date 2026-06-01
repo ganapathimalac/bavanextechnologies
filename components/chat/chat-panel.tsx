@@ -182,7 +182,12 @@ export function ChatPanel({ chat, onClose }: ChatPanelProps) {
           <ChatInlineForm
             chat={chat}
             formType={activeForm}
-            onSuccess={(msg) => addAssistantMessage(msg)}
+            onSuccess={(msg, extras) => {
+              addAssistantMessage(msg, { quickReplies: extras?.quickReplies });
+              if (extras?.nextForm) {
+                chat.openForm(extras.nextForm);
+              }
+            }}
           />
         )}
 

@@ -8,6 +8,7 @@ import type {
   ChatMessage,
   MessageAttachment,
   QuickReply,
+  ServiceWorkflowState,
 } from "@/lib/chat/types";
 
 const STORAGE_KEY = "bavanex-chat";
@@ -17,6 +18,7 @@ type StoredChat = {
   messages: ChatMessage[];
   language: ChatLanguage;
   lastReadAt: string;
+  workflowState?: ServiceWorkflowState;
 };
 
 function loadStoredChat(): StoredChat | null {
@@ -69,6 +71,7 @@ export function useChat() {
   const [unreadCount, setUnreadCount] = useState(0);
   const [activeForm, setActiveForm] = useState<ChatFormType | null>(null);
   const [sessionId, setSessionId] = useState("");
+  const [workflowState, setWorkflowState] = useState<ServiceWorkflowState | null>(null);
   const [isHydrated, setIsHydrated] = useState(false);
   const initializedRef = useRef(false);
 
@@ -82,6 +85,7 @@ export function useChat() {
     if (stored) {
       setMessages(stored.messages);
       setLanguage(stored.language);
+      if (stored.workflowState) setWorkflowState(stored.workflowState);
       const unread = stored.messages.filter(
         (m) => m.role === "assistant" && m.timestamp > stored.lastReadAt
       ).length;
@@ -98,8 +102,9 @@ export function useChat() {
       messages,
       language,
       lastReadAt: isOpen ? new Date().toISOString() : loadStoredChat()?.lastReadAt ?? "",
+      workflowState: workflowState ?? undefined,
     });
-  }, [messages, language, isOpen]);
+  }, [messages, language, isOpen, workflowState]);
 
   useEffect(() => {
     if (isOpen) {
@@ -123,6 +128,44 @@ export function useChat() {
     [isOpen]
   );
 
+  const submitServiceTicket = useCallback(
+    async (state: ServiceWorkflowState) => {
+      if (!state.customer || !state.service) return;
+
+      const conversationSummary = messages
+        .slice(-12)
+        .map((m) => `${m.role}: ${m.content}`)
+        .join("\n");
+
+      setIsTyping(true);
+      try {
+        const res = await fetch("/api/chat/service-request", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            sessionId,
+            customer: state.customer,
+            service: state.service,
+            conversationSummary,
+            language,
+            workflowState: state,
+            confirm: true,
+          }),
+        });
+        const data = await res.json();
+        if (!res.ok) throw new Error(data.error);
+
+        if (data.workflowState) setWorkflowState(data.workflowState);
+        addAssistantMessage(data.message, { quickReplies: data.quickReplies, meta: { intent: data.intent } });
+      } catch {
+        addAssistantMessage(ui.networkError);
+      } finally {
+        setIsTyping(false);
+      }
+    },
+    [messages, language, sessionId, addAssistantMessage, ui.networkError]
+  );
+
   const sendToApi = useCallback(
     async (message: string) => {
       setIsTyping(true);
@@ -140,14 +183,24 @@ export function useChat() {
             sessionId,
             language,
             history,
+            workflowState,
           }),
         });
 
         const data = await res.json();
         if (!res.ok) throw new Error(data.error);
 
+        if (data.workflowState) {
+          setWorkflowState(data.workflowState);
+        }
+
         if (data.action?.type?.startsWith("show_")) {
           setActiveForm(data.action.type);
+        }
+
+        if (data.action?.type === "submit_service_request" && data.workflowState) {
+          await submitServiceTicket(data.workflowState);
+          return;
         }
 
         addAssistantMessage(data.message, {
@@ -160,7 +213,7 @@ export function useChat() {
         setIsTyping(false);
       }
     },
-    [messages, language, sessionId, addAssistantMessage, ui.networkError]
+    [messages, language, sessionId, workflowState, addAssistantMessage, ui.networkError, submitServiceTicket]
   );
 
   const sendMessage = useCallback(
@@ -223,23 +276,44 @@ export function useChat() {
 
   const initWelcome = useCallback(() => {
     if (!isHydrated || messages.length > 0) return;
-    addAssistantMessage(ui.welcome, { quickReplies: getDefaultQuickReplies(language) });
-  }, [isHydrated, messages.length, addAssistantMessage, ui.welcome, language]);
+    addAssistantMessage(ui.welcome, {
+      quickReplies: [
+        { id: "existing", label: "Existing Customer", payload: "I am an existing customer" },
+        { id: "new", label: "New Customer", payload: "I am a new customer" },
+        { id: "service", label: "Service Request", payload: "I need to submit a service request" },
+      ],
+    });
+    setWorkflowState({ step: "customer_type", validationAttempts: 0 });
+  }, [isHydrated, messages.length, addAssistantMessage, ui.welcome]);
 
   const clearHistory = useCallback(() => {
     setMessages([]);
     setActiveForm(null);
+    setWorkflowState(null);
     localStorage.removeItem(STORAGE_KEY);
     setTimeout(() => {
-      addAssistantMessage(ui.welcome, { quickReplies: getDefaultQuickReplies(language) });
+      addAssistantMessage(ui.welcome, {
+        quickReplies: [
+          { id: "existing", label: "Existing Customer", payload: "I am an existing customer" },
+          { id: "new", label: "New Customer", payload: "I am a new customer" },
+          { id: "service", label: "Service Request", payload: "I need to submit a service request" },
+        ],
+      });
+      setWorkflowState({ step: "customer_type", validationAttempts: 0 });
     }, 0);
-  }, [addAssistantMessage, ui.welcome, language]);
+  }, [addAssistantMessage, ui.welcome]);
 
   const changeLanguage = useCallback((lang: ChatLanguage) => {
     setLanguage(lang);
   }, []);
 
   const dismissForm = useCallback(() => setActiveForm(null), []);
+
+  const openForm = useCallback((formType: ChatFormType) => setActiveForm(formType), []);
+
+  const setWorkflowStateFromForm = useCallback((state: ServiceWorkflowState) => {
+    setWorkflowState(state);
+  }, []);
 
   return {
     language,
@@ -248,6 +322,7 @@ export function useChat() {
     isTyping,
     unreadCount,
     activeForm,
+    workflowState,
     ui,
     sessionId,
     isHydrated,
@@ -259,7 +334,9 @@ export function useChat() {
     clearHistory,
     changeLanguage,
     dismissForm,
+    openForm,
     addAssistantMessage,
+    setWorkflowStateFromForm,
   };
 }
 

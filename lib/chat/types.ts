@@ -34,17 +34,69 @@ export type ChatHistoryItem = {
   content: string;
 };
 
-export type ChatFormType = "show_lead_form" | "show_appointment_form" | "show_escalation_form";
+export type ChatFormType =
+  | "show_lead_form"
+  | "show_appointment_form"
+  | "show_escalation_form"
+  | "show_new_customer_form"
+  | "show_service_request_form";
 
 export type ChatAction =
   | { type: ChatFormType }
+  | { type: "submit_service_request" }
   | { type: "link"; href: string; label: string };
+
+export type ServicePriority = "Low" | "Medium" | "High" | "Critical";
+
+export type CustomerProfile = {
+  id: string;
+  fullName: string;
+  email: string;
+  phone: string;
+  company?: string;
+  location?: string;
+  isExisting: boolean;
+  preferredContact: string;
+};
+
+export type ServiceRequestDetails = {
+  serviceType: string;
+  productName: string;
+  issueCategory: string;
+  description: string;
+  priority: ServicePriority;
+  preferredDate: string;
+  serviceLocation: string;
+  attachments: string[];
+};
+
+export type ServiceWorkflowStep =
+  | "idle"
+  | "customer_type"
+  | "existing_verify"
+  | "new_registration"
+  | "service_collect"
+  | "summary_confirm"
+  | "ticket_pending"
+  | "completed"
+  | "escalated";
+
+export type ServiceWorkflowState = {
+  step: ServiceWorkflowStep;
+  customerType?: "existing" | "new";
+  validationAttempts?: number;
+  customer?: CustomerProfile;
+  service?: ServiceRequestDetails;
+  ticketNumber?: string;
+  conversationSummary?: string;
+};
 
 export type ChatResponse = {
   message: string;
   quickReplies?: QuickReply[];
   action?: ChatAction;
   intent?: string;
+  workflowState?: ServiceWorkflowState;
 };
 
 export type LeadPayload = {
@@ -79,4 +131,24 @@ export type EscalationPayload = {
   summary: string;
   conversationSummary?: string;
   language?: ChatLanguage;
+};
+
+export type NewCustomerPayload = {
+  sessionId: string;
+  fullName: string;
+  email: string;
+  phone: string;
+  company?: string;
+  location: string;
+  preferredContact: string;
+  language?: ChatLanguage;
+};
+
+export type ServiceRequestPayload = {
+  sessionId: string;
+  customer: CustomerProfile;
+  service: ServiceRequestDetails;
+  conversationSummary?: string;
+  language?: ChatLanguage;
+  workflowState?: ServiceWorkflowState;
 };

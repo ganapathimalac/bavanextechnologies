@@ -47,7 +47,7 @@ export function HeroSection() {
 
           <FadeIn delay={0.3}>
             <div className="mt-8 flex w-full flex-col items-stretch justify-center gap-3 sm:mt-10 sm:flex-row sm:items-center sm:gap-4">
-              <Link href="/#contact" className="w-full sm:w-auto">
+              <Link href="/request-demo" className="w-full sm:w-auto">
                 <Button size="lg" className="w-full min-h-[48px] sm:w-auto">
                   Request Demo
                   <ArrowRight size={18} />
