@@ -202,7 +202,7 @@ export const organizationJsonLd = {
   "@type": "Organization",
   name: siteConfig.name,
   url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://bavanextechnologies.com",
-  logo: `${process.env.NEXT_PUBLIC_SITE_URL ?? "https://bavanextechnologies.com"}/images/logo-mark.png`,
+  logo: `${process.env.NEXT_PUBLIC_SITE_URL ?? "https://bavanextechnologies.com"}/images/bavanex-logo-full.png`,
   description: siteConfig.description,
   email: siteConfig.email,
   telephone: siteConfig.phone,

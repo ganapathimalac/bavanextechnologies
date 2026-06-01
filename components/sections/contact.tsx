@@ -82,9 +82,9 @@ export function ContactSection() {
           </p>
         </FadeIn>
 
-        <div className="mt-16 grid gap-12 lg:grid-cols-2">
-          <FadeIn direction="left">
-            <Card>
+        <div className="mt-16 grid gap-12 lg:grid-cols-2 lg:items-start">
+          <FadeIn direction="left" className="lg:sticky lg:top-28 lg:self-start">
+            <Card className="h-full">
               <CardContent className="p-8">
                 <form onSubmit={handleSubmit} className="space-y-5" noValidate>
                     {error && (
@@ -205,24 +205,24 @@ export function ContactSection() {
 
               <div>
                 <p className="mb-4 font-medium text-white">Office Locations</p>
-                <div className="space-y-4">
+                <div className="grid gap-3 sm:grid-cols-2">
                   {siteConfig.offices.map((office) => (
                     <div key={office.city} className="flex items-start gap-3 rounded-lg border border-white/10 p-4">
                       <MapPin size={16} className="mt-0.5 shrink-0 text-accent-purple" />
-                      <div>
+                      <div className="min-w-0">
                         <p className="font-medium text-white">{office.city}</p>
-                        <p className="text-sm text-muted">{office.address}</p>
+                        <p className="text-sm leading-snug text-muted">{office.address}</p>
                       </div>
                     </div>
                   ))}
                 </div>
               </div>
 
-              <div className="overflow-hidden rounded-2xl border border-white/10">
+              <div className="overflow-hidden rounded-2xl border border-white/10 sm:col-span-2">
                 <iframe
                   title="Bavanex Technologies Office Location"
                   src={`https://maps.google.com/maps?q=${encodeURIComponent(chennaiOffice.address)}&t=&z=14&ie=UTF8&iwloc=&output=embed`}
-                  className="h-64 w-full grayscale invert opacity-80"
+                  className="aspect-[16/10] h-56 w-full grayscale invert opacity-80 sm:h-64"
                   loading="lazy"
                   referrerPolicy="no-referrer-when-downgrade"
                 />

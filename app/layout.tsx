@@ -50,10 +50,16 @@ export const metadata: Metadata = {
     description: siteConfig.description,
     type: "website",
     locale: "en_US",
-    images: [{ url: "/images/logo-mark.png", width: 512, height: 512, alt: siteConfig.name }],
+    images: [{ url: "/images/bavanex-logo-full.png", width: 1024, height: 1024, alt: siteConfig.name }],
   },
   robots: { index: true, follow: true },
-  icons: { icon: "/images/logo-mark.png", apple: "/apple-touch-icon.png" },
+  icons: {
+    icon: [
+      { url: "/images/logo-mark.svg", type: "image/svg+xml" },
+      { url: "/images/logo-mark.png", type: "image/png", sizes: "512x512" },
+    ],
+    apple: "/apple-touch-icon.png",
+  },
   manifest: "/manifest.webmanifest",
   appleWebApp: {
     capable: true,

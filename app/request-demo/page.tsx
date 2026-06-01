@@ -50,7 +50,7 @@ export default function RequestDemoPage() {
   return (
     <>
       {/* Hero */}
-      <section className="relative overflow-hidden pt-24 sm:pt-28">
+      <section className="relative overflow-hidden pt-28 sm:pt-32">
         <div className="absolute inset-0 bg-premium-bg" />
         <div className="absolute inset-0 bg-premium-radial" />
         <div className="absolute left-1/4 top-20 h-72 w-72 rounded-full bg-accent-blue/10 blur-[100px]" />
@@ -63,7 +63,7 @@ export default function RequestDemoPage() {
           }}
         />
 
-        <div className="container-max relative section-padding pb-16">
+        <div className="container-max relative pb-16 sm:pb-20">
           <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
             <FadeIn direction="right">
               <span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-1.5 text-sm font-semibold uppercase tracking-widest text-accent-cyan">
@@ -224,24 +224,12 @@ export default function RequestDemoPage() {
           </FadeIn>
           <div className="mt-16 grid gap-6 md:grid-cols-3">
             {successStories.map((story, i) => (
-              <FadeIn key={story.name} delay={i * 0.08}>
-                <Card className="h-full border-white/10 bg-white/5">
-                  <CardContent className="flex h-full flex-col p-6">
-                    <p className="flex-1 text-sm italic leading-relaxed text-muted">&ldquo;{story.quote}&rdquo;</p>
-                    <div className="mt-6 flex items-center gap-4 border-t border-white/10 pt-6">
-                      <Image
-                        src={story.avatar}
-                        alt={story.name}
-                        width={48}
-                        height={48}
-                        className="rounded-full border border-white/10"
-                      />
-                      <div>
-                        <p className="font-semibold text-white">{story.name}</p>
-                        <p className="text-xs text-muted">{story.role}</p>
-                      </div>
-                    </div>
-                    <p className="mt-4 text-sm font-semibold text-accent-cyan">{story.metric}</p>
+              <FadeIn key={story.industry} delay={i * 0.08}>
+                <Card className="flex h-full flex-col border-white/10 bg-white/5">
+                  <CardContent className="flex flex-1 flex-col p-6">
+                    <p className="text-xs font-semibold uppercase tracking-wider text-accent-purple">{story.industry}</p>
+                    <p className="mt-3 flex-1 text-sm italic leading-relaxed text-muted">&ldquo;{story.quote}&rdquo;</p>
+                    <p className="mt-6 text-sm font-semibold text-accent-cyan">{story.metric}</p>
                   </CardContent>
                 </Card>
               </FadeIn>
@@ -288,7 +276,8 @@ export default function RequestDemoPage() {
 
       {/* FAQ */}
       <section className="section-padding">
-        <div className="container-max max-w-3xl">
+        <div className="container-max">
+          <div className="content-narrow">
           <FadeIn className="text-center">
             <span className="text-sm font-semibold uppercase tracking-widest text-accent-purple">FAQ</span>
             <h2 className="mt-3 font-display text-3xl font-bold sm:text-4xl">Demo Questions Answered</h2>
@@ -296,6 +285,7 @@ export default function RequestDemoPage() {
           <FadeIn delay={0.1} className="mt-12">
             <DemoFaqAccordion />
           </FadeIn>
+          </div>
         </div>
       </section>
 

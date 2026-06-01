@@ -21,7 +21,8 @@ export default function ResourcesPage() {
         breadcrumbs={[{ label: "Home", href: "/" }, { label: "Resources" }]}
       />
       <section className="section-padding">
-        <div className="container-max max-w-3xl space-y-3">
+        <div className="container-max">
+          <div className="content-narrow space-y-3">
           {resourcesContent.items.map((item, i) => (
             <FadeIn key={item.href} delay={i * 0.04}>
               <Link
@@ -39,6 +40,7 @@ export default function ResourcesPage() {
               </Link>
             </FadeIn>
           ))}
+          </div>
         </div>
       </section>
     </>

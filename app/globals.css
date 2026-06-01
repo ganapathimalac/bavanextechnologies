@@ -108,11 +108,23 @@
   }
 
   .section-padding {
-    @apply px-4 py-16 sm:px-6 sm:py-20 lg:px-8 lg:py-28;
+    @apply py-16 sm:py-20 lg:py-28;
+  }
+
+  .section-padding-x {
+    @apply px-4 sm:px-6 lg:px-8;
   }
 
   .container-max {
-    @apply mx-auto w-full max-w-7xl;
+    @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8;
+  }
+
+  .content-narrow {
+    @apply mx-auto w-full max-w-3xl;
+  }
+
+  .content-focus {
+    @apply mx-auto w-full max-w-xl;
   }
 
   .safe-top {

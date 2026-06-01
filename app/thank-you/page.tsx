@@ -35,7 +35,8 @@ export default async function ThankYouPage({ searchParams }: Props) {
 
   return (
     <section className="flex min-h-[70vh] items-center section-padding pt-28">
-      <div className="container-max max-w-xl text-center">
+      <div className="container-max">
+        <div className="content-focus text-center">
         <FadeIn>
           <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-emerald-500/20 text-emerald-400">
             <CheckCircle2 className="h-8 w-8" />
@@ -59,6 +60,7 @@ export default async function ThankYouPage({ searchParams }: Props) {
             </Link>
           </div>
         </FadeIn>
+        </div>
       </div>
     </section>
   );

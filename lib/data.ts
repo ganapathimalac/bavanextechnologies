@@ -579,7 +579,6 @@ export const footerLinks = {
     { label: "Resources Hub", href: "/resources" },
     { label: "Blog", href: "/blog" },
     { label: "Case Studies", href: "/case-studies" },
-    { label: "Trust Center", href: "/trust" },
     { label: "Pricing", href: "/pricing" },
     { label: "Integrations", href: "/integrations" },
   ],

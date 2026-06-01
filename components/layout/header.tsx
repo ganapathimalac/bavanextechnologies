@@ -76,17 +76,17 @@ export function Header() {
           : "bg-transparent"
       )}
     >
-      <div className="container-max flex h-14 items-center justify-between px-4 sm:h-16 sm:px-6 lg:px-8">
+      <div className="container-max flex h-14 items-center justify-between sm:h-16">
         <Link href="/" aria-label="Bavanex Technologies home" className="group min-w-0 shrink transition-opacity hover:opacity-90 active:opacity-80">
           <Logo size="md" showTagline className="max-sm:[&_.logo-tagline]:hidden max-sm:[&_.logo-divider]:hidden" />
         </Link>
 
-        <nav className="hidden items-center gap-6 xl:gap-8 lg:flex" aria-label="Main navigation">
+        <nav className="hidden items-center gap-4 xl:gap-6 xl:flex" aria-label="Main navigation">
           {navLinks.map((link) => (
             <Link
               key={link.href}
               href={link.href}
-              className={desktopLinkClass(link.href)}
+              className={cn(desktopLinkClass(link.href), "inline-flex items-center py-1")}
               aria-current={isNavLinkActive(link.href, pathname, hash) ? "page" : undefined}
             >
               {link.label}
@@ -94,7 +94,7 @@ export function Header() {
           ))}
         </nav>
 
-        <div className="hidden items-center gap-3 lg:flex">
+        <div className="hidden items-center gap-3 xl:flex">
           <Link href="/login">
             <Button variant="ghost" size="sm">Sign In</Button>
           </Link>
@@ -105,7 +105,7 @@ export function Header() {
 
         <button
           type="button"
-          className="touch-target flex items-center justify-center rounded-lg text-white lg:hidden active:bg-white/10"
+          className="touch-target flex items-center justify-center rounded-lg text-white xl:hidden active:bg-white/10"
           onClick={() => setMobileOpen(!mobileOpen)}
           aria-expanded={mobileOpen}
           aria-label={mobileOpen ? "Close menu" : "Open menu"}
@@ -120,9 +120,9 @@ export function Header() {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            className="max-h-[calc(100dvh-3.5rem)] overflow-y-auto border-b border-white/[0.12] bg-navy/95 backdrop-blur-xl lg:hidden"
+            className="max-h-[calc(100dvh-3.5rem)] overflow-y-auto border-b border-white/[0.12] bg-navy/95 backdrop-blur-xl xl:hidden"
           >
-            <nav className="flex flex-col gap-1 px-4 py-4 safe-bottom" aria-label="Mobile navigation">
+            <nav className="flex flex-col gap-1 px-4 py-4 safe-bottom sm:px-6 lg:px-8" aria-label="Mobile navigation">
               {navLinks.map((link) => (
                 <Link
                   key={link.href}

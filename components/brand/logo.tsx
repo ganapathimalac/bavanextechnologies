@@ -8,42 +8,91 @@ type LogoProps = {
   markClassName?: string;
   showWordmark?: boolean;
   showTagline?: boolean;
+  showMotto?: boolean;
   size?: "sm" | "md" | "lg";
+  variant?: "horizontal" | "full";
 };
 
 const sizes = {
-  sm: { mark: 38, name: "text-[13px]", tag: "text-[8px]", gap: "gap-2.5" },
-  md: { mark: 44, name: "text-[15px]", tag: "text-[9px]", gap: "gap-3" },
-  lg: { mark: 54, name: "text-[18px]", tag: "text-[10px]", gap: "gap-3.5" },
+  sm: { markH: 34, name: "text-[13px]", sub: "text-[7px]", motto: "text-[6px]", gap: "gap-2.5" },
+  md: { markH: 40, name: "text-[15px]", sub: "text-[8px]", motto: "text-[7px]", gap: "gap-3" },
+  lg: { markH: 48, name: "text-[19px]", sub: "text-[9px]", motto: "text-[8px]", gap: "gap-3.5" },
 };
 
-/** Premium 3D B mark — sample artwork on rounded app-icon tile */
+const MARK_ASPECT = 800 / 520;
+
 export function LogoMark({
-  size = 44,
+  height = 40,
   className,
 }: {
-  size?: number;
+  height?: number;
   className?: string;
 }) {
+  const width = Math.round(height * MARK_ASPECT);
+
   return (
     <div
-      className={cn(
-        "relative shrink-0 overflow-hidden rounded-[22%]",
-        "shadow-[0_6px_24px_rgba(0,0,0,0.45),0_0_0_1px_rgba(79,142,247,0.18)]",
-        "ring-1 ring-white/[0.06]",
-        className
-      )}
-      style={{ width: size, height: size }}
+      className={cn("relative shrink-0", className)}
+      style={{ width, height }}
       aria-hidden
     >
       <Image
         src="/images/logo-mark.png"
         alt=""
         fill
-        sizes={`${size}px`}
-        className="object-cover"
+        sizes={`${width}px`}
+        className="object-contain"
         priority
       />
+    </div>
+  );
+}
+
+function LogoWordmark({
+  size,
+  showTagline,
+  showMotto,
+}: {
+  size: keyof typeof sizes;
+  showTagline: boolean;
+  showMotto: boolean;
+}) {
+  const s = sizes[size];
+
+  return (
+    <div className="flex min-w-0 flex-col justify-center leading-none">
+      <span
+        className={cn(
+          "font-display font-bold uppercase tracking-[0.1em] text-white",
+          s.name
+        )}
+      >
+        BAVA
+        <span className="text-[#2EC4C6]">NEX</span>
+      </span>
+      {showTagline && (
+        <span
+          className={cn(
+            "logo-tagline mt-1 flex items-center gap-1.5 font-sans font-medium uppercase tracking-[0.16em] text-[#2EC4C6]",
+            s.sub
+          )}
+        >
+          <span className="logo-divider hidden h-px w-2 bg-[#2EC4C6]/70 sm:block" aria-hidden />
+          Technologies Pvt. Ltd.
+          <span className="logo-divider hidden h-px w-2 bg-[#2EC4C6]/70 sm:block" aria-hidden />
+        </span>
+      )}
+      {showMotto && (
+        <span
+          className={cn(
+            "mt-1 font-sans font-medium uppercase tracking-[0.14em] text-white/55",
+            s.motto
+          )}
+        >
+          Innovate <span className="text-[#2EC4C6]">•</span> Transform{" "}
+          <span className="text-[#2EC4C6]">•</span> Grow
+        </span>
+      )}
     </div>
   );
 }
@@ -53,43 +102,32 @@ export function Logo({
   markClassName,
   showWordmark = true,
   showTagline = true,
+  showMotto = false,
   size = "md",
+  variant = "horizontal",
 }: LogoProps) {
   const s = sizes[size];
 
+  if (variant === "full") {
+    return (
+      <div className={cn("relative shrink-0", className)}>
+        <Image
+          src="/images/bavanex-logo-full.png"
+          alt="Bavanex Technologies"
+          width={280}
+          height={280}
+          className={cn("h-auto w-auto max-w-[min(280px,80vw)]", markClassName)}
+          priority
+        />
+      </div>
+    );
+  }
+
   return (
     <div className={cn("flex items-center", s.gap, className)}>
-      <LogoMark size={s.mark} className={markClassName} />
+      <LogoMark height={s.markH} className={markClassName} />
       {showWordmark && (
-        <div className="flex flex-col justify-center">
-          <span
-            className={cn(
-              "font-display font-bold uppercase leading-none tracking-[0.2em] text-white drop-shadow-sm",
-              s.name
-            )}
-          >
-            BAVA
-            <span className="bg-gradient-to-r from-accent-cyan via-sky-300 to-accent-blue bg-clip-text text-transparent">
-              NEX
-            </span>
-          </span>
-          {showTagline && (
-            <>
-              <span
-                className="logo-divider my-1 block h-px w-full max-w-[92px] bg-gradient-to-r from-accent-cyan/70 via-accent-blue/50 to-transparent"
-                aria-hidden
-              />
-              <span
-                className={cn(
-                  "logo-tagline font-sans font-semibold uppercase leading-none tracking-[0.28em] text-white/50",
-                  s.tag
-                )}
-              >
-                Technologies
-              </span>
-            </>
-          )}
-        </div>
+        <LogoWordmark size={size} showTagline={showTagline} showMotto={showMotto} />
       )}
     </div>
   );

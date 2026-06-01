@@ -18,7 +18,7 @@ export function HeroSection() {
       <div className="absolute bottom-1/4 right-1/4 h-96 w-96 rounded-full bg-accent-purple/[0.10] blur-[120px]" />
       <ParticleNetwork />
 
-      <div className="container-max relative z-10 px-4 pt-20 sm:px-6 sm:pt-24 lg:px-8">
+      <div className="container-max relative z-10 pt-20 sm:pt-24">
         <div className="mx-auto max-w-4xl text-center">
           <FadeIn>
             <motion.div

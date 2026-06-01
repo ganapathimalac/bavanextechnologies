@@ -49,7 +49,6 @@ export function TestimonialsSection() {
                   <div className="mt-8 flex flex-col items-center gap-1">
                     <p className="font-semibold text-white">{testimonials[current].name}</p>
                     <p className="text-sm text-muted">{testimonials[current].role}</p>
-                    <p className="text-xs text-accent-cyan">{testimonials[current].company}</p>
                   </div>
                 </motion.div>
               </AnimatePresence>

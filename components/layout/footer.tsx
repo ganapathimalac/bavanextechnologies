@@ -22,12 +22,14 @@ export function Footer() {
   return (
     <footer className="safe-bottom border-t border-white/[0.12] bg-navy-elevated/80">
       <div className="container-max section-padding pb-8">
-        <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-6">
-          <div className="lg:col-span-1">
+        <div className="flex flex-col gap-10 xl:flex-row xl:items-start xl:gap-12">
+          <div className="shrink-0 xl:max-w-xs">
             <Link href="/" aria-label={`${siteConfig.name} home`}>
-              <Logo size="sm" showTagline />
+              <Logo size="sm" showTagline showMotto />
             </Link>
-            <p className="mt-4 text-sm text-muted">{siteConfig.description.slice(0, 100)}...</p>
+            <p className="mt-4 line-clamp-4 text-sm leading-relaxed text-muted">
+              {siteConfig.description}
+            </p>
             <div className="mt-6 flex gap-3">
               {social.map(({ icon: Icon, href, label }) => (
                 <a
@@ -42,30 +44,32 @@ export function Footer() {
             </div>
           </div>
 
-          {columns.map((col) => (
-            <div key={col.title}>
-              <h4 className="mb-4 text-sm font-semibold text-white">{col.title}</h4>
-              <ul className="space-y-2">
-                {col.links.map((link) => (
-                  <li key={link.label}>
-                    <Link
-                      href={link.href}
-                      className="text-sm text-muted transition-colors hover:text-white"
-                    >
-                      {link.label}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
+          <div className="grid flex-1 grid-cols-2 gap-x-6 gap-y-8 sm:grid-cols-3 lg:grid-cols-5 lg:gap-x-8">
+            {columns.map((col) => (
+              <div key={col.title}>
+                <h4 className="mb-4 text-sm font-semibold text-white">{col.title}</h4>
+                <ul className="space-y-2.5">
+                  {col.links.map((link) => (
+                    <li key={link.label}>
+                      <Link
+                        href={link.href}
+                        className="text-sm leading-snug text-muted transition-colors hover:text-white"
+                      >
+                        {link.label}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
         </div>
 
-        <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-white/10 pt-8 sm:flex-row">
-          <p className="text-sm text-muted">
+        <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-white/10 pt-8 sm:flex-row sm:items-center">
+          <p className="text-center text-sm text-muted sm:text-left">
             &copy; 2022 {siteConfig.name}. All rights reserved.
           </p>
-          <div className="flex flex-wrap justify-center gap-6 text-sm text-muted sm:justify-end">
+          <div className="flex flex-wrap justify-center gap-4 text-sm text-muted sm:justify-end sm:gap-6">
             <Link href="/privacy" className="hover:text-white">Privacy Policy</Link>
             <Link href="/terms" className="hover:text-white">Terms of Service</Link>
             <Link href="/cookies" className="hover:text-white">Cookie Policy</Link>

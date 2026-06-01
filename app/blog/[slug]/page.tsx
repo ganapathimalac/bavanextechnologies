@@ -42,7 +42,8 @@ export default async function BlogPostPage({ params }: Props) {
       />
 
       <article className="section-padding">
-        <div className="container-max mx-auto max-w-3xl">
+        <div className="container-max">
+          <div className="content-narrow">
           <FadeIn>
             <div className="relative mb-8 aspect-[2/1] overflow-hidden rounded-2xl border border-white/10">
               <Image
@@ -70,12 +71,13 @@ export default async function BlogPostPage({ params }: Props) {
 
           <FadeIn className="mt-12 border-t border-white/10 pt-8">
             <Link
-              href="/#blog"
+              href="/blog"
               className="inline-flex items-center gap-2 text-sm text-muted hover:text-white transition-colors"
             >
               <ArrowLeft size={16} /> Back to all articles
             </Link>
           </FadeIn>
+          </div>
         </div>
       </article>
     </>

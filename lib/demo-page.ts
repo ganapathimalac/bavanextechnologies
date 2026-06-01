@@ -1,4 +1,4 @@
-import { services, testimonials, technologyPartners } from "./data";
+import { services, technologyPartners } from "./data";
 
 export const demoPageContent = {
   hero: {
@@ -114,9 +114,24 @@ export const demoPageContent = {
   ],
   serviceInterests: services.map((s) => s.title),
   clientLogos: technologyPartners,
-  successStories: testimonials.map((t, i) => ({
-    ...t,
-    avatar: `/images/avatar-${i + 1}.svg`,
-    metric: ["32% revenue uplift", "45% cost reduction", "3x retention gain"][i],
-  })),
+  successStories: [
+    {
+      industry: "Retail",
+      quote:
+        "Dynamic pricing and demand forecasting delivered measurable revenue gains across thousands of SKUs.",
+      metric: "32% revenue uplift",
+    },
+    {
+      industry: "Manufacturing",
+      quote:
+        "Predictive supply chain analytics reduced inventory waste while improving forecast accuracy at scale.",
+      metric: "45% cost reduction",
+    },
+    {
+      industry: "Banking",
+      quote:
+        "A unified customer intelligence platform improved retention and cross-sell performance enterprise-wide.",
+      metric: "3x retention gain",
+    },
+  ],
 };

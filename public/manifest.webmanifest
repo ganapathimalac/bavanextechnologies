@@ -9,6 +9,12 @@
   "orientation": "portrait-primary",
   "icons": [
     {
+      "src": "/images/logo-mark.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
       "src": "/images/logo-mark.png",
       "sizes": "512x512",
       "type": "image/png",

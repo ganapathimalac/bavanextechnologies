@@ -103,8 +103,8 @@ export default function AboutPage() {
           <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {aboutContent.leadership.map((leader, i) => (
               <FadeIn key={leader.name} delay={i * 0.08}>
-                <Card className="h-full border-white/10 bg-white/5">
-                  <CardContent className="p-6">
+                <Card className="flex h-full flex-col border-white/10 bg-white/5">
+                  <CardContent className="flex flex-1 flex-col p-6">
                     <h3 className="font-display text-lg font-semibold text-white">{leader.name}</h3>
                     <p className="mt-1 text-sm font-medium text-accent-cyan">{leader.role}</p>
                     <p className="mt-3 text-sm leading-relaxed text-muted">{leader.bio}</p>

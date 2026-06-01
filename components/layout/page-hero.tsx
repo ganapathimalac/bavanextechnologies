@@ -17,7 +17,7 @@ export function PageHero({ eyebrow, title, description, breadcrumbs }: Props) {
       <div className="absolute left-1/3 top-0 h-72 w-72 rounded-full bg-accent-blue/[0.12] blur-[100px]" />
       <div className="absolute bottom-0 right-1/4 h-72 w-72 rounded-full bg-accent-purple/[0.10] blur-[100px]" />
 
-      <div className="container-max relative px-4 sm:px-6 lg:px-8">
+      <div className="container-max relative">
         {breadcrumbs && breadcrumbs.length > 0 && (
           <FadeIn>
             <nav aria-label="Breadcrumb" className="mb-6 flex items-center gap-1 text-sm text-muted">

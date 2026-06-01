@@ -11,6 +11,13 @@ export function useCounter(end: number, duration = 2000, startOnView = true) {
     if (!startOnView) return;
     const el = ref.current;
     if (!el) return;
+
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (reducedMotion) {
+      setCount(end);
+      return;
+    }
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -22,7 +29,7 @@ export function useCounter(end: number, duration = 2000, startOnView = true) {
     );
     observer.observe(el);
     return () => observer.disconnect();
-  }, [startOnView]);
+  }, [startOnView, end]);
 
   useEffect(() => {
     if (!started) return;

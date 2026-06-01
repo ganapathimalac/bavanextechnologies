@@ -26,7 +26,8 @@ export function LegalPageContent({ title, description, lastUpdated, sections }: 
         breadcrumbs={[{ label: "Home", href: "/" }, { label: title }]}
       />
       <section className="section-padding">
-        <div className="container-max max-w-3xl">
+        <div className="container-max">
+          <div className="content-narrow">
           <FadeIn>
             <p className="text-sm text-muted">Last updated: {lastUpdated}</p>
           </FadeIn>
@@ -62,6 +63,7 @@ export function LegalPageContent({ title, description, lastUpdated, sections }: 
               .
             </p>
           </FadeIn>
+          </div>
         </div>
       </section>
     </>
