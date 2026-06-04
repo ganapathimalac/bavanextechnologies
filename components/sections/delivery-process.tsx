@@ -12,9 +12,9 @@ export function DeliveryProcessSection() {
     <section className="section-padding surface-section">
       <div className="container-max">
         <FadeIn className="mx-auto max-w-2xl text-center">
-          <span className="text-sm font-semibold uppercase tracking-widest text-accent-cyan">Our Process</span>
-          <h2 className="mt-3 font-display text-3xl font-bold sm:text-4xl">How We Deliver</h2>
-          <p className="mt-4 text-muted">
+          <span className="section-eyebrow">Our Process</span>
+          <h2 className="section-title">How We Deliver</h2>
+          <p className="section-lead">
             A proven five-phase methodology from discovery through continuous optimization.
           </p>
         </FadeIn>

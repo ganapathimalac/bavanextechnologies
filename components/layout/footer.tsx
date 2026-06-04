@@ -21,7 +21,7 @@ export function Footer() {
 
   return (
     <footer className="safe-bottom border-t border-white/[0.12] bg-navy-elevated/80">
-      <div className="container-max section-padding pb-8">
+      <div className="container-max pt-16 pb-8 sm:pt-20 lg:pt-24">
         <div className="flex flex-col gap-10 xl:flex-row xl:items-start xl:gap-12">
           <div className="shrink-0 xl:max-w-xs">
             <Link href="/" aria-label={`${siteConfig.name} home`}>

@@ -19,13 +19,9 @@ export function ServicesSection() {
     <section id="services" className="section-padding">
       <div className="container-max">
         <FadeIn className="mx-auto max-w-2xl text-center">
-          <span className="text-sm font-semibold uppercase tracking-widest text-accent-cyan">
-            Our Services
-          </span>
-          <h2 className="mt-3 font-display text-3xl font-bold sm:text-4xl lg:text-5xl">
-            End-to-End AI & Data Solutions
-          </h2>
-          <p className="mt-4 text-muted">
+          <span className="section-eyebrow">Our Services</span>
+          <h2 className="section-title">End-to-End AI & Data Solutions</h2>
+          <p className="section-lead">
             From strategy to deployment, we deliver comprehensive technology services
             that drive measurable business outcomes.
           </p>

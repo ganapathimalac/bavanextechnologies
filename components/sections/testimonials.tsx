@@ -16,13 +16,9 @@ export function TestimonialsSection() {
     <section id="leadership" className="section-padding">
       <div className="container-max">
         <FadeIn className="mx-auto max-w-2xl text-center">
-          <span className="text-sm font-semibold uppercase tracking-widest text-accent-blue">
-            Leadership
-          </span>
-          <h2 className="mt-3 font-display text-3xl font-bold sm:text-4xl lg:text-5xl">
-            From Our Leadership Team
-          </h2>
-          <p className="mt-4 text-muted">
+          <span className="section-eyebrow">Leadership</span>
+          <h2 className="section-title">From Our Leadership Team</h2>
+          <p className="section-lead">
             Perspectives on enterprise AI, engineering excellence, and client delivery.
           </p>
         </FadeIn>

@@ -17,13 +17,9 @@ export function IndustriesSection() {
     <section id="industries" className="section-padding surface-section">
       <div className="container-max">
         <FadeIn className="mx-auto max-w-2xl text-center">
-          <span className="text-sm font-semibold uppercase tracking-widest text-accent-blue">
-            Industries
-          </span>
-          <h2 className="mt-3 font-display text-3xl font-bold sm:text-4xl lg:text-5xl">
-            Industries We Serve
-          </h2>
-          <p className="mt-4 text-muted">
+          <span className="section-eyebrow">Industries</span>
+          <h2 className="section-title">Industries We Serve</h2>
+          <p className="section-lead">
             Deep domain expertise across regulated and high-growth sectors worldwide.
           </p>
         </FadeIn>

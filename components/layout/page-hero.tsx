@@ -39,7 +39,7 @@ export function PageHero({ eyebrow, title, description, breadcrumbs }: Props) {
 
         <FadeIn>
           {eyebrow && (
-            <span className="text-sm font-semibold uppercase tracking-widest text-accent-cyan">
+            <span className="section-eyebrow">
               {eyebrow}
             </span>
           )}
@@ -47,7 +47,7 @@ export function PageHero({ eyebrow, title, description, breadcrumbs }: Props) {
             {title}
           </h1>
           {description && (
-            <p className="mt-5 max-w-2xl text-lg text-muted">{description}</p>
+            <p className="mt-5 max-w-2xl text-base leading-relaxed text-muted sm:text-lg">{description}</p>
           )}
         </FadeIn>
       </div>

@@ -33,14 +33,14 @@ export function HeroSection() {
           </FadeIn>
 
           <FadeIn delay={0.1}>
-            <h1 className="font-display text-3xl font-bold leading-tight tracking-tight sm:text-5xl lg:text-7xl">
+            <h1 className="font-display text-3xl font-bold leading-tight tracking-tight sm:text-4xl md:text-5xl lg:text-6xl">
               Transforming Businesses with{" "}
               <span className="text-gradient">Technology &amp; Innovation</span>
             </h1>
           </FadeIn>
 
           <FadeIn delay={0.2}>
-            <p className="mx-auto mt-6 max-w-2xl text-lg text-muted sm:text-xl">
+            <p className="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-muted sm:text-lg">
               {siteConfig.description}
             </p>
           </FadeIn>

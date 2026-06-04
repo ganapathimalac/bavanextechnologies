@@ -35,7 +35,7 @@ export function LegalPageContent({ title, description, lastUpdated, sections }: 
             {sections.map((section) => (
               <FadeIn key={section.title}>
                 <h2 className="font-display text-xl font-bold text-white sm:text-2xl">{section.title}</h2>
-                <div className="mt-4 space-y-4 text-muted leading-relaxed">
+                <div className="mt-4 space-y-4 text-base leading-relaxed text-muted">
                   {section.paragraphs.map((p) => (
                     <p key={p.slice(0, 40)}>{p}</p>
                   ))}

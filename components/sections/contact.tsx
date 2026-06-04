@@ -71,13 +71,9 @@ export function ContactSection() {
     <section id="contact" className="section-padding surface-section">
       <div className="container-max">
         <FadeIn className="mx-auto max-w-2xl text-center">
-          <span className="text-sm font-semibold uppercase tracking-widest text-accent-blue">
-            Contact
-          </span>
-          <h2 className="mt-3 font-display text-3xl font-bold sm:text-4xl lg:text-5xl">
-            Let&apos;s Transform Your Business
-          </h2>
-          <p className="mt-4 text-muted">
+          <span className="section-eyebrow">Contact</span>
+          <h2 className="section-title">Let&apos;s Transform Your Business</h2>
+          <p className="section-lead">
             Ready to harness the power of AI? Get in touch with our team of experts.
           </p>
         </FadeIn>

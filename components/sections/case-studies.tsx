@@ -12,13 +12,9 @@ export function CaseStudiesSection() {
     <section id="case-studies" className="section-padding surface-section">
       <div className="container-max">
         <FadeIn className="mx-auto max-w-2xl text-center">
-          <span className="text-sm font-semibold uppercase tracking-widest text-accent-purple">
-            Case Studies
-          </span>
-          <h2 className="mt-3 font-display text-3xl font-bold sm:text-4xl lg:text-5xl">
-            Real Impact, Measurable Results
-          </h2>
-          <p className="mt-4 text-muted">
+          <span className="section-eyebrow text-accent-purple">Case Studies</span>
+          <h2 className="section-title">Real Impact, Measurable Results</h2>
+          <p className="section-lead">
             See how leading enterprises transform operations with Bavanex AI solutions.
           </p>
         </FadeIn>

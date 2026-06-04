@@ -78,7 +78,7 @@ export function Header() {
     >
       <div className="container-max flex h-14 items-center justify-between sm:h-16">
         <Link href="/" aria-label="Bavanex Technologies home" className="group min-w-0 shrink transition-opacity hover:opacity-90 active:opacity-80">
-          <Logo size="md" showTagline className="max-sm:[&_.logo-tagline]:hidden max-sm:[&_.logo-divider]:hidden" />
+          <Logo size="md" showTagline className="max-sm:[&_.logo-wordmark-root]:hidden" />
         </Link>
 
         <nav className="hidden items-center gap-4 xl:gap-6 xl:flex" aria-label="Main navigation">
@@ -122,7 +122,7 @@ export function Header() {
             exit={{ opacity: 0, height: 0 }}
             className="max-h-[calc(100dvh-3.5rem)] overflow-y-auto border-b border-white/[0.12] bg-navy/95 backdrop-blur-xl xl:hidden"
           >
-            <nav className="flex flex-col gap-1 px-4 py-4 safe-bottom sm:px-6 lg:px-8" aria-label="Mobile navigation">
+            <nav className="container-max flex flex-col gap-1 py-4 safe-bottom" aria-label="Mobile navigation">
               {navLinks.map((link) => (
                 <Link
                   key={link.href}

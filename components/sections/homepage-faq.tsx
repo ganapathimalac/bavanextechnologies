@@ -7,13 +7,13 @@ export function HomepageFaqSection() {
     <section id="faq" className="section-padding">
       <div className="container-max">
         <div className="content-narrow">
-        <FadeIn className="text-center">
-          <span className="text-sm font-semibold uppercase tracking-widest text-accent-blue">FAQ</span>
-          <h2 className="mt-3 font-display text-3xl font-bold sm:text-4xl">Frequently Asked Questions</h2>
-        </FadeIn>
-        <FadeIn delay={0.1} className="mt-12">
-          <FaqAccordion items={homepageFaqs} />
-        </FadeIn>
+          <FadeIn className="text-center">
+            <span className="section-eyebrow">FAQ</span>
+            <h2 className="section-title">Frequently Asked Questions</h2>
+          </FadeIn>
+          <FadeIn delay={0.1} className="mt-12">
+            <FaqAccordion items={homepageFaqs} />
+          </FadeIn>
         </div>
       </div>
     </section>

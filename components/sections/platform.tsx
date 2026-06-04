@@ -19,13 +19,9 @@ export function PlatformSection() {
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-accent-blue/5 to-transparent" />
       <div className="container-max relative">
         <FadeIn className="mx-auto max-w-2xl text-center">
-          <span className="text-sm font-semibold uppercase tracking-widest text-accent-purple">
-            AI Platform
-          </span>
-          <h2 className="mt-3 font-display text-3xl font-bold sm:text-4xl lg:text-5xl">
-            Bavanex Intelligence Platform
-          </h2>
-          <p className="mt-4 text-muted">
+          <span className="section-eyebrow text-accent-purple">AI Platform</span>
+          <h2 className="section-title">Bavanex Intelligence Platform</h2>
+          <p className="section-lead">
             A unified enterprise AI platform powering predictive analytics,
             intelligent automation, and agentic systems at scale.
           </p>

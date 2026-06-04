@@ -12,13 +12,9 @@ export function CareersSection() {
     <section id="careers" className="section-padding surface-section">
       <div className="container-max">
         <FadeIn className="mx-auto max-w-2xl text-center">
-          <span className="text-sm font-semibold uppercase tracking-widest text-accent-cyan">
-            Careers
-          </span>
-          <h2 className="mt-3 font-display text-3xl font-bold sm:text-4xl lg:text-5xl">
-            Build the Future of AI
-          </h2>
-          <p className="mt-4 text-muted">
+          <span className="section-eyebrow">Careers</span>
+          <h2 className="section-title">Build the Future of AI</h2>
+          <p className="section-lead">
             Join a team of innovators shaping the next generation of enterprise intelligence.
           </p>
         </FadeIn>

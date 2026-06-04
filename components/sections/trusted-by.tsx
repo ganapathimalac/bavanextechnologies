@@ -9,11 +9,9 @@ export function TrustedBySection() {
   return (
     <section id="trusted" className="section-padding border-y border-white/[0.08] surface-section">
       <div className="container-max">
-        <FadeIn>
-          <p className="mb-2 text-center text-sm font-medium uppercase tracking-widest text-muted">
-            Enterprise technology ecosystem
-          </p>
-          <p className="mb-10 text-center text-xs text-muted/80">
+        <FadeIn className="mx-auto max-w-2xl text-center">
+          <p className="section-eyebrow text-muted">Enterprise technology ecosystem</p>
+          <p className="section-lead mb-10">
             Platforms and tools our engineering teams build and deploy on
           </p>
         </FadeIn>

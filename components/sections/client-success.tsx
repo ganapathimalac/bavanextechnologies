@@ -9,13 +9,9 @@ export function ClientSuccessSection() {
     <section className="section-padding surface-section">
       <div className="container-max">
         <FadeIn className="mx-auto max-w-2xl text-center">
-          <span className="text-sm font-semibold uppercase tracking-widest text-accent-purple">
-            Client Success
-          </span>
-          <h2 className="mt-3 font-display text-3xl font-bold sm:text-4xl lg:text-5xl">
-            What Our Clients Achieve
-          </h2>
-          <p className="mt-4 text-muted">
+          <span className="section-eyebrow text-accent-purple">Client Success</span>
+          <h2 className="section-title">What Our Clients Achieve</h2>
+          <p className="section-lead">
             Real outcomes from enterprise engagements across retail, manufacturing, and finance.
           </p>
         </FadeIn>
